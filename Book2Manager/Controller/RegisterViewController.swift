@@ -49,6 +49,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         PublisherTextField.delegate = self
         CommentTextView.layer.cornerRadius = 5
         
+        //setupBarcodeCapture()
     }
     
     
