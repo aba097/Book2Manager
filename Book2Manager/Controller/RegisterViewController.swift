@@ -33,6 +33,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     //model
     var barcodemodel = BarcodeModel()
+    var registermodel = RegisterModel()
+    
     //フォトライブラリ操作
     var imagepicker: UIImagePickerController!
     
@@ -42,6 +44,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         TitleTextField.delegate = self
         AuthorTextField.delegate = self
         PublisherTextField.delegate = self
+        IsbnTextField.delegate = self
         CommentTextView.layer.cornerRadius = 5
         
         textViewSetup()
@@ -174,6 +177,30 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func RegisterAction(_ sender: Any) {
+        var title = ""
+        var author = ""
+        var publisher = ""
+        var comment = ""
+        
+        if TitleTextField.text != nil && TitleTextField.text?.count != 0 {
+            title = TitleTextField.text!
+        }
+        
+        if AuthorTextField.text != nil && AuthorTextField.text?.count != 0{
+            author = AuthorTextField.text!
+        }
+        
+        if PublisherTextField.text != nil && PublisherTextField.text?.count != 0{
+            publisher = PublisherTextField.text!
+        }
+        
+        if CommentTextView.text != nil && CommentTextView?.text?.count != 0 {
+            comment = CommentTextView.text!
+        }
+        
+        let result = registermodel.register(title, author, publisher, comment, ImageView)
+        
+        
     }
     
 }
