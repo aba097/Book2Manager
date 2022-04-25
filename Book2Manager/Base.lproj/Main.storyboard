@@ -283,6 +283,7 @@
                         <outlet property="IsbnTextField" destination="umN-bb-2Mk" id="pdw-fy-J7M"/>
                         <outlet property="PublisherTextField" destination="ArX-29-gyg" id="mgd-OL-CIc"/>
                         <outlet property="RegisterButton" destination="EOj-be-wfR" id="I0c-nR-ULz"/>
+                        <outlet property="ScrollView" destination="blA-xv-1hz" id="teW-yN-4zd"/>
                         <outlet property="TitleTextField" destination="apK-rY-oe1" id="ykd-BS-X0E"/>
                     </connections>
                 </viewController>

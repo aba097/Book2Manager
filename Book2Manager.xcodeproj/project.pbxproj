@@ -66,6 +66,7 @@
 		43FBBD772814162700C72574 /* Book2Manager */ = {
 			isa = PBXGroup;
 			children = (
+				43FBBD9D2816380500C72574 /* View */,
 				43FBBD952816139B00C72574 /* Model */,
 				43FBBD8C28141E1700C72574 /* Controller */,
 				43FBBD782814162700C72574 /* AppDelegate.swift */,
@@ -104,6 +105,13 @@
 				43FBBD9B281616E100C72574 /* isbnManager.swift */,
 			);
 			path = ISBN;
+			sourceTree = "<group>";
+		};
+		43FBBD9D2816380500C72574 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
