@@ -10,14 +10,7 @@ import AVFoundation
 import Foundation
 
 
-extension UIScrollView {
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            self.superview?.touchesBegan(touches, with: event)
-            print("touches began")
-    }
-}
-
-class RegisterViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var TitleTextField: UITextField!
     
@@ -40,11 +33,12 @@ class RegisterViewController: UIViewController, UIScrollViewDelegate, UITextFiel
     
     //model
     var barcodemodel = BarcodeModel()
+    //フォトライブラリ操作
+    var imagepicker: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        ScrollView.delegate = self
+
         TitleTextField.delegate = self
         AuthorTextField.delegate = self
         PublisherTextField.delegate = self
@@ -55,6 +49,7 @@ class RegisterViewController: UIViewController, UIScrollViewDelegate, UITextFiel
        
     }
     
+    //=======textview===============
     // textViewを閉じるためのボタンを生成
     func textViewSetup(){
         //ツールバー生成
@@ -110,7 +105,49 @@ class RegisterViewController: UIViewController, UIScrollViewDelegate, UITextFiel
         return true
     }
 
+    //=======image============
+    //画像アップロード時
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        ImageView.image = info[.originalImage] as? UIImage
+        //フォトライブラリと閉じる
+        picker.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    //フォトライブラリのキャンセルボタンをクリック時
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        //フォトライブラリ閉じる
+        picker.dismiss(animated: true, completion: nil)
+
+    }
+    
     @IBAction func ImageUploadAction(_ sender: Any) {
+        imagepicker = UIImagePickerController()
+        
+        //アラート生成
+        let alert: UIAlertController = UIAlertController(title: "選択してください", message:  "", preferredStyle:  UIAlertController.Style.alert)
+        
+        let cameraaction: UIAlertAction = UIAlertAction(title: "カメラを起動", style: .default, handler:{
+            (action: UIAlertAction!) -> Void in
+            self.imagepicker.sourceType = .camera
+            self.imagepicker.delegate = self
+            self.present(self.imagepicker, animated: true)
+        })
+        
+        let libraryaction: UIAlertAction = UIAlertAction(title: "フォトライブラリを起動", style: .default, handler:{
+            (action: UIAlertAction!) -> Void in
+            self.imagepicker.sourceType = .photoLibrary
+            self.imagepicker.delegate = self
+            self.present(self.imagepicker, animated: true)
+        })
+        
+        alert.addAction(cameraaction)
+        alert.addAction(libraryaction)
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        //alert表示
+        present(alert, animated: true, completion: nil)
+        
     }
     
     
