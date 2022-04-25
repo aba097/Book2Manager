@@ -9,20 +9,21 @@
 /* Begin PBXBuildFile section */
 		43FBBD792814162700C72574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD782814162700C72574 /* AppDelegate.swift */; };
 		43FBBD7B2814162700C72574 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD7A2814162700C72574 /* SceneDelegate.swift */; };
-		43FBBD7D2814162700C72574 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD7C2814162700C72574 /* ViewController.swift */; };
 		43FBBD802814162700C72574 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43FBBD7E2814162700C72574 /* Main.storyboard */; };
 		43FBBD822814162800C72574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43FBBD812814162800C72574 /* Assets.xcassets */; };
 		43FBBD852814162800C72574 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43FBBD832814162800C72574 /* LaunchScreen.storyboard */; };
 		43FBBD90281421E600C72574 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD8F281421E600C72574 /* RegisterViewController.swift */; };
 		43FBBD922814223F00C72574 /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD912814223F00C72574 /* DeleteViewController.swift */; };
 		43FBBD942814224E00C72574 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD932814224E00C72574 /* UserViewController.swift */; };
+		43FBBD97281613C000C72574 /* Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD96281613C000C72574 /* Barcode.swift */; };
+		43FBBD9A281616C100C72574 /* isbn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD99281616C100C72574 /* isbn.swift */; };
+		43FBBD9C281616E100C72574 /* isbnManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBBD9B281616E100C72574 /* isbnManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		43FBBD752814162700C72574 /* Book2Manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Book2Manager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FBBD782814162700C72574 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43FBBD7A2814162700C72574 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		43FBBD7C2814162700C72574 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		43FBBD7F2814162700C72574 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43FBBD812814162800C72574 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43FBBD842814162800C72574 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,6 +31,9 @@
 		43FBBD8F281421E600C72574 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		43FBBD912814223F00C72574 /* DeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
 		43FBBD932814224E00C72574 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		43FBBD96281613C000C72574 /* Barcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barcode.swift; sourceTree = "<group>"; };
+		43FBBD99281616C100C72574 /* isbn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isbn.swift; sourceTree = "<group>"; };
+		43FBBD9B281616E100C72574 /* isbnManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isbnManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +66,10 @@
 		43FBBD772814162700C72574 /* Book2Manager */ = {
 			isa = PBXGroup;
 			children = (
+				43FBBD952816139B00C72574 /* Model */,
 				43FBBD8C28141E1700C72574 /* Controller */,
 				43FBBD782814162700C72574 /* AppDelegate.swift */,
 				43FBBD7A2814162700C72574 /* SceneDelegate.swift */,
-				43FBBD7C2814162700C72574 /* ViewController.swift */,
 				43FBBD7E2814162700C72574 /* Main.storyboard */,
 				43FBBD812814162800C72574 /* Assets.xcassets */,
 				43FBBD832814162800C72574 /* LaunchScreen.storyboard */,
@@ -82,6 +86,24 @@
 				43FBBD932814224E00C72574 /* UserViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		43FBBD952816139B00C72574 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				43FBBD98281616AE00C72574 /* ISBN */,
+				43FBBD96281613C000C72574 /* Barcode.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		43FBBD98281616AE00C72574 /* ISBN */ = {
+			isa = PBXGroup;
+			children = (
+				43FBBD99281616C100C72574 /* isbn.swift */,
+				43FBBD9B281616E100C72574 /* isbnManager.swift */,
+			);
+			path = ISBN;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,10 +176,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43FBBD7D2814162700C72574 /* ViewController.swift in Sources */,
 				43FBBD942814224E00C72574 /* UserViewController.swift in Sources */,
 				43FBBD792814162700C72574 /* AppDelegate.swift in Sources */,
+				43FBBD97281613C000C72574 /* Barcode.swift in Sources */,
+				43FBBD9C281616E100C72574 /* isbnManager.swift in Sources */,
 				43FBBD7B2814162700C72574 /* SceneDelegate.swift in Sources */,
+				43FBBD9A281616C100C72574 /* isbn.swift in Sources */,
 				43FBBD90281421E600C72574 /* RegisterViewController.swift in Sources */,
 				43FBBD922814223F00C72574 /* DeleteViewController.swift in Sources */,
 			);

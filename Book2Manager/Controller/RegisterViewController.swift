@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import Foundation
 
-class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var TitleTextField: UITextField!
     
@@ -27,19 +27,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     @IBOutlet weak var RegisterButton: UIButton!
     
     @IBOutlet weak var CaptureView: UIView!
-    private lazy var captureSession: AVCaptureSession = AVCaptureSession()
-    private lazy var captureDevice: AVCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)!
-    private lazy var capturePreviewLayer: AVCaptureVideoPreviewLayer = {
-        let layer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        return layer
-    }()
-        
-    private var captureInput: AVCaptureInput? = nil
-    private lazy var Output: AVCaptureMetadataOutput = {
-        let output = AVCaptureMetadataOutput()
-        output.setMetadataObjectsDelegate(self, queue: .main)
-        return output
-    }()
+    
+    //model
+    var barcodemodel = BarcodeModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +39,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         PublisherTextField.delegate = self
         CommentTextView.layer.cornerRadius = 5
         
-        //setupBarcodeCapture()
+        barcodemodel.setup(CaptureView, TitleTextField, AuthorTextField, PublisherTextField, CommentTextView, ImageView, RegisterButton)
+       
     }
     
     
@@ -58,7 +49,26 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     
-    @IBAction func BarcodeReadAction(_ sender: Any) {
+    @IBAction func BarcodeReadAction(_ sender: UIButton) {
+        
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            CaptureView.isHidden = false
+            if !barcodemodel.captureSession.isRunning {
+                barcodemodel.captureSession.startRunning()
+            }
+        }else{
+            CaptureView.isHidden = true
+            if barcodemodel.captureSession.isRunning {
+                barcodemodel.captureSession.stopRunning()
+            }
+        }
+        
+    }
+    
+    @IBAction func ISBNcodeAction(_ sender: Any) {
+        barcodemodel.bookSearch(isbncode: IsbnTextField.text!)
     }
     
     @IBAction func RegisterAction(_ sender: Any) {
