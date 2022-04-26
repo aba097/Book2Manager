@@ -27,45 +27,58 @@ class RegisterModel {
         
         //JSONを読み込む
         var readRes = readJson()
+        if readRes.msg != "success"{
+            return readRes.msg
+        }
         
         //IDを決定する
-        var maxid = 0
+        var maxid = -1
         for book in readRes.bookdata{
             maxid = max(book.id, maxid)
         }
         maxid += 1
-        
+
         //imageviewの画像を保存
         let imageRes = writeImage(image, String(maxid))
     
-        //登録するデータをJSONに追加
-        //JSONファイルが存在しない場合
-        if readRes.bookdata.count == 1{
-            readRes.bookdata[0] = Bookdata(id: maxid, title: title, author: author, publisher: publisher, comment: comment, image: String(maxid) + ".jpeg", state: -1)
-        }else{
-            readRes.bookdata.append(Bookdata(id: maxid, title: title, author: author, publisher: publisher, comment: comment, image: String(maxid) + ".jpeg", state: -1))
+        if imageRes != "success" {
+            return imageRes
         }
+        
+        //登録するデータをJSONに追加
+        readRes.bookdata.append(Bookdata(id: maxid, title: title, author: author, publisher: publisher, comment: comment, image: String(maxid) + ".jpeg", state: -1))
+       
         //JSON書き込み
         let writeRes = writeJson(&readRes.bookdata)
+        
+        if writeRes != "success" {
+            return writeRes
+        }
         
         return "success"
     }
     
     //jsonファイル読み込み
     func readJson()->(msg: String, bookdata: [Bookdata]){
+
         guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            fatalError("フォルダURL取得エラー")
+            return ("フォルダURL取得エラー", [Bookdata]())
+        }
+        
+        //ファイルが存在しない場合は1回目ということでsuccessを返す
+        if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/" + "bookdata.json"){
+            return ("success", [Bookdata]())
         }
 
         let fileURL = dirURL.appendingPathComponent("bookdata.json")
- 
+
         guard let data = try? Data(contentsOf: fileURL) else {
-            return ("ファイル読み込みエラー",[Bookdata(id: 0,title: "",author: "",publisher: "",comment: "",image: "",state: 0)])
+            return ("JSON読み込みエラー", [Bookdata]())
         }
          
         let decoder = JSONDecoder()
         guard let bookdata = try? decoder.decode([Bookdata].self, from: data) else {
-            return ("JSON読み込みエラー",[Bookdata(id: 0,title: "",author: "",publisher: "",comment: "",image: "",state: 0)])
+            return ("JSONデコードエラー", [Bookdata]())
         }
         
         return ("success", bookdata)

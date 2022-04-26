@@ -200,6 +200,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         
         let result = registermodel.register(title, author, publisher, comment, ImageView)
         
+        if result != "success" {
+            //alert
+            let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "success", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }
         
     }
     
