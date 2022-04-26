@@ -10,7 +10,8 @@ import UIKit
 
 class RegisterModel {
     
-    let filename = "text.json"
+    let filename = "bookdata.json"
+    let filepath = NSHomeDirectory() + "/Documents/" + "bookdata.json"
     
     //JSON struct
     struct Bookdata: Codable {
@@ -66,11 +67,11 @@ class RegisterModel {
         }
         
         //ファイルが存在しない場合は1回目ということでsuccessを返す
-        if !FileManager.default.fileExists(atPath: NSHomeDirectory() + "/Documents/" + "bookdata.json"){
+        if !FileManager.default.fileExists(atPath: filepath){
             return ("success", [Bookdata]())
         }
 
-        let fileURL = dirURL.appendingPathComponent("bookdata.json")
+        let fileURL = dirURL.appendingPathComponent(filename)
 
         guard let data = try? Data(contentsOf: fileURL) else {
             return ("JSON読み込みエラー", [Bookdata]())
@@ -91,7 +92,7 @@ class RegisterModel {
             return "フォルダURL取得エラー"
         }
 
-        let fileURL = dirURL.appendingPathComponent("bookdata.json")
+        let fileURL = dirURL.appendingPathComponent(filename)
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
