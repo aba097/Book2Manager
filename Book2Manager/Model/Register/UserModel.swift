@@ -37,9 +37,17 @@ class UserModel{
             
         }else{
         //user.txtが存在する場合はusersに読み込み
-            
-            
+            let fileURL = dirURL.appendingPathComponent(filename)
+
+            do {
+                let text = try String(contentsOf: fileURL)
+                users = text.components(separatedBy: "\n").filter{!$0.isEmpty}
+                
+            }catch {
+                return "ファイル読み込みエラー"
+            }
         }
+        
         return "success"
     }
 }
