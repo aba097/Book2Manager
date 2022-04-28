@@ -9,9 +9,15 @@ import UIKit
 
 class UserViewController: UIViewController {
 
+    @IBOutlet weak var TableView: UITableView!
+    
+    var usermodel = UserModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let result = usermodel.loadUserData()
+        print(result)
         // Do any additional setup after loading the view.
     }
     
