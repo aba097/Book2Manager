@@ -7,10 +7,20 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class TableViewCell: UITableViewCell{
     
     @IBOutlet weak var UserNameTextField: UITextField!
     
-    
- 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        UserNameTextField.delegate = self
+    }
+}
+
+//TextFieldのリターンキーが押された時，キーボード閉じる
+extension TableViewCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        UserNameTextField.resignFirstResponder()
+        return true
+    }
 }
