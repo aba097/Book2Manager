@@ -53,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43131B67281FEFC7004A0EAA /* User */ = {
+			isa = PBXGroup;
+			children = (
+				43131B65281A57E9004A0EAA /* UserModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		43FBBD6C2814162700C72574 = {
 			isa = PBXGroup;
 			children = (
@@ -98,9 +106,8 @@
 		43FBBD952816139B00C72574 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				43131B67281FEFC7004A0EAA /* User */,
 				43FBBDA12816780100C72574 /* Register */,
-				43FBBDA0281677F400C72574 /* Barcode */,
-				43FBBD98281616AE00C72574 /* ISBN */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,7 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				43FBBDA22816781900C72574 /* RegisterModel.swift */,
-				43131B65281A57E9004A0EAA /* UserModel.swift */,
+				43FBBD98281616AE00C72574 /* ISBN */,
+				43FBBDA0281677F400C72574 /* Barcode */,
 			);
 			path = Register;
 			sourceTree = "<group>";

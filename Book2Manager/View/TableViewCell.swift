@@ -11,6 +11,8 @@ class TableViewCell: UITableViewCell{
     
     @IBOutlet weak var UserNameTextField: UITextField!
     
+    var usermodel = UserModel.shared
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         UserNameTextField.delegate = self
@@ -21,6 +23,9 @@ class TableViewCell: UITableViewCell{
 extension TableViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         UserNameTextField.resignFirstResponder()
+        
+        usermodel.users[textField.tag] = textField.text!
+        
         return true
     }
 }
