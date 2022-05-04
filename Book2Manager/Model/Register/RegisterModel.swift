@@ -21,7 +21,7 @@ class RegisterModel {
         var publisher: String //本の出版社
         var comment: String //本のコメント
         var image: String //本のURL
-        var state : Int //本の貸し借り状態
+        var state : String //本の貸し借り状態
     }
     
     func register(_ title: String, _ author: String, _ publisher: String, _ comment: String, _ image: UIImageView)->String{
@@ -47,7 +47,7 @@ class RegisterModel {
         }
         
         //登録するデータをJSONに追加
-        readRes.bookdata.append(Bookdata(id: maxid, title: title, author: author, publisher: publisher, comment: comment, image: String(maxid) + ".jpeg", state: -1))
+        readRes.bookdata.append(Bookdata(id: maxid, title: title, author: author, publisher: publisher, comment: comment, image: String(maxid) + ".jpeg", state: ""))
        
         //JSON書き込み
         let writeRes = writeJson(&readRes.bookdata)
