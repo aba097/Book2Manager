@@ -122,6 +122,11 @@ class BookDataModel{
             ids.append(book.id)
         }
         
+        //本が存在しない
+        if ids.count == 0 {
+            return "success"
+        }
+        
         //パース
         guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return "フォルダURL取得エラー"
@@ -231,6 +236,11 @@ class BookDataModel{
     func setDiplayData(searchtext: String?, searchtarget: String, sortcategorytarget: String, sortordertarget: String){
         
         currentids = []
+        
+        //本が存在しない
+        if ids.count == 0 {
+            return
+        }
         
         //検索入力ない
         if searchtext == nil || searchtext! == "" {
