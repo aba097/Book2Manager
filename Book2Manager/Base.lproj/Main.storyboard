@@ -299,19 +299,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiu-H1-X0h">
-                                                <rect key="frame" x="20" y="40" width="70" height="20"/>
+                                                <rect key="frame" x="20" y="40" width="60" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="2w1-Le-U8U"/>
-                                                    <constraint firstAttribute="width" constant="70" id="pjT-mt-SlH"/>
+                                                    <constraint firstAttribute="width" constant="60" id="pjT-mt-SlH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2W2-df-tMc">
-                                                <rect key="frame" x="20" y="95" width="70" height="20"/>
+                                                <rect key="frame" x="20" y="95" width="60" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="70" id="RmN-Jf-1E7"/>
+                                                    <constraint firstAttribute="width" constant="60" id="h70-cP-eJ5"/>
                                                     <constraint firstAttribute="height" constant="20" id="sq7-SJ-U5I"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
@@ -319,27 +319,27 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fc-O0-qgG">
-                                                <rect key="frame" x="20" y="150" width="70" height="20"/>
+                                                <rect key="frame" x="20" y="150" width="60" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="4fU-E6-CuK"/>
-                                                    <constraint firstAttribute="width" constant="70" id="BRu-gI-jYJ"/>
+                                                    <constraint firstAttribute="width" constant="60" id="BRu-gI-jYJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cmt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1U-HR-8an">
-                                                <rect key="frame" x="20" y="205" width="70" height="20"/>
+                                                <rect key="frame" x="20" y="205" width="60" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="Czk-Ov-La2"/>
-                                                    <constraint firstAttribute="width" constant="70" id="SkL-U3-I5U"/>
+                                                    <constraint firstAttribute="width" constant="60" id="SkL-U3-I5U"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apK-rY-oe1">
-                                                <rect key="frame" x="110" y="32.5" width="284" height="35"/>
+                                                <rect key="frame" x="85" y="32.5" width="309" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="Caz-eJ-ir5"/>
                                                 </constraints>
@@ -347,7 +347,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r9r-pl-vcg">
-                                                <rect key="frame" x="110" y="87.5" width="284" height="35"/>
+                                                <rect key="frame" x="85" y="87.5" width="309" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="MCu-nQ-emm"/>
                                                 </constraints>
@@ -355,7 +355,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ArX-29-gyg">
-                                                <rect key="frame" x="110" y="142.5" width="284" height="35"/>
+                                                <rect key="frame" x="85" y="142.5" width="309" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="gUA-SI-PlN"/>
                                                 </constraints>
@@ -363,7 +363,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1qu-4X-3Pe">
-                                                <rect key="frame" x="110" y="205" width="284" height="150"/>
+                                                <rect key="frame" x="85" y="205" width="309" height="150"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="1pH-YH-PsZ"/>
@@ -392,10 +392,10 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISBN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sb-hb-8nb">
-                                                <rect key="frame" x="20" y="640" width="70" height="20"/>
+                                                <rect key="frame" x="20" y="640" width="60" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="4UP-7R-VZ9"/>
-                                                    <constraint firstAttribute="width" constant="70" id="oih-77-C71"/>
+                                                    <constraint firstAttribute="width" constant="60" id="oih-77-C71"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -446,7 +446,7 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="umN-bb-2Mk">
-                                                <rect key="frame" x="110" y="632.5" width="284" height="35"/>
+                                                <rect key="frame" x="85" y="632.5" width="309" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="jE6-Kj-yvA"/>
                                                 </constraints>
@@ -462,15 +462,15 @@
                                             <constraint firstItem="EOj-be-wfR" firstAttribute="top" secondItem="PM1-Ht-fkL" secondAttribute="bottom" constant="40" id="9Dn-Sm-jKq"/>
                                             <constraint firstItem="PM1-Ht-fkL" firstAttribute="top" secondItem="oN5-V2-Z0b" secondAttribute="bottom" constant="20" id="9gv-JF-bq1"/>
                                             <constraint firstItem="qbk-Ke-ehD" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="Eda-oD-8My"/>
-                                            <constraint firstItem="apK-rY-oe1" firstAttribute="leading" secondItem="oiu-H1-X0h" secondAttribute="trailing" constant="20" id="FlW-rI-do0"/>
-                                            <constraint firstItem="1qu-4X-3Pe" firstAttribute="leading" secondItem="h1U-HR-8an" secondAttribute="trailing" constant="20" id="H3D-5I-azP"/>
+                                            <constraint firstItem="apK-rY-oe1" firstAttribute="leading" secondItem="oiu-H1-X0h" secondAttribute="trailing" constant="5" id="FlW-rI-do0"/>
+                                            <constraint firstItem="1qu-4X-3Pe" firstAttribute="leading" secondItem="h1U-HR-8an" secondAttribute="trailing" constant="5" id="H3D-5I-azP"/>
                                             <constraint firstItem="oiu-H1-X0h" firstAttribute="top" secondItem="rfi-oB-Kk0" secondAttribute="top" constant="40" id="I92-eN-TDY"/>
                                             <constraint firstAttribute="trailing" secondItem="r9r-pl-vcg" secondAttribute="trailing" constant="20" id="IZ4-FQ-KAF"/>
                                             <constraint firstItem="oN5-V2-Z0b" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="JzD-0c-KNF"/>
-                                            <constraint firstItem="umN-bb-2Mk" firstAttribute="leading" secondItem="7Sb-hb-8nb" secondAttribute="trailing" constant="20" id="LeP-S1-fRv"/>
+                                            <constraint firstItem="umN-bb-2Mk" firstAttribute="leading" secondItem="7Sb-hb-8nb" secondAttribute="trailing" constant="5" id="LeP-S1-fRv"/>
                                             <constraint firstItem="oiu-H1-X0h" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="M2E-r5-DjT"/>
                                             <constraint firstItem="ArX-29-gyg" firstAttribute="centerY" secondItem="2fc-O0-qgG" secondAttribute="centerY" id="Nak-Xb-oPH"/>
-                                            <constraint firstItem="r9r-pl-vcg" firstAttribute="leading" secondItem="2W2-df-tMc" secondAttribute="trailing" constant="20" id="ORa-hG-RRL"/>
+                                            <constraint firstItem="r9r-pl-vcg" firstAttribute="leading" secondItem="2W2-df-tMc" secondAttribute="trailing" constant="5" id="ORa-hG-RRL"/>
                                             <constraint firstAttribute="trailing" secondItem="apK-rY-oe1" secondAttribute="trailing" constant="20" id="Pgp-X1-yJk"/>
                                             <constraint firstItem="2W2-df-tMc" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="QPC-kZ-XCs"/>
                                             <constraint firstItem="eGk-wv-mgu" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="T3c-lz-pxN"/>
@@ -485,7 +485,7 @@
                                             <constraint firstAttribute="trailing" secondItem="ArX-29-gyg" secondAttribute="trailing" constant="20" id="eGn-Ts-5HS"/>
                                             <constraint firstItem="AdY-Ng-M2j" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="ecy-B9-JRM"/>
                                             <constraint firstItem="h1U-HR-8an" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="fDG-FZ-JnU"/>
-                                            <constraint firstItem="ArX-29-gyg" firstAttribute="leading" secondItem="2fc-O0-qgG" secondAttribute="trailing" constant="20" id="gK8-P6-MqZ"/>
+                                            <constraint firstItem="ArX-29-gyg" firstAttribute="leading" secondItem="2fc-O0-qgG" secondAttribute="trailing" constant="5" id="gK8-P6-MqZ"/>
                                             <constraint firstItem="1qu-4X-3Pe" firstAttribute="top" secondItem="h1U-HR-8an" secondAttribute="top" id="jCk-jv-epf"/>
                                             <constraint firstItem="2fc-O0-qgG" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="lVP-MH-BDK"/>
                                             <constraint firstItem="r9r-pl-vcg" firstAttribute="centerY" secondItem="2W2-df-tMc" secondAttribute="centerY" id="lsZ-4e-0wc"/>
