@@ -24,7 +24,9 @@ extension TableViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         UserNameTextField.resignFirstResponder()
         
-        usermodel.users[textField.tag] = textField.text!
+        if textField.text! != "" {
+            usermodel.users[textField.tag] = textField.text!
+        }
         
         return true
     }

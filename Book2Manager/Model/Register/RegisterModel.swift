@@ -20,7 +20,7 @@ class RegisterModel {
         var author: String //本の著者
         var publisher: String //本の出版社
         var comment: String //本のコメント
-        var image: String //本のURL
+        var image: String //画像名
         var state : String //本の貸し借り状態
     }
     
@@ -42,12 +42,17 @@ class RegisterModel {
         //imageviewの画像を保存
         let imageRes = writeImage(image, String(maxid))
     
-        if imageRes != "success" {
+        if imageRes != "success" && imageRes != "noimage"{
             return imageRes
         }
         
+        var imagename = ""
+        if imageRes != "noimage" {
+            imagename = String(maxid) + ".jpeg"
+        }
+        
         //登録するデータをJSONに追加
-        readRes.bookdata.append(Bookdata(id: maxid, title: title, author: author, publisher: publisher, comment: comment, image: String(maxid) + ".jpeg", state: ""))
+        readRes.bookdata.append(Bookdata(id: maxid, title: title, author: author, publisher: publisher, comment: comment, image: imagename, state: ""))
        
         //JSON書き込み
         let writeRes = writeJson(&readRes.bookdata)
@@ -123,6 +128,8 @@ class RegisterModel {
             }catch{
                 return "画像書き込みエラー"
             }
+        }else{
+          return "noimage"
         }
         
         return "success"
