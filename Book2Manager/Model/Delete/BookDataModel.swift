@@ -167,10 +167,16 @@ class BookDataModel{
         //idxはcurrentidのid idは本id
         let id = currentids[idx]
         
+        var existFlag = false
         for book in bookjson {
             if book.id != id {
                 newbookjson.append(book)
+            }else{
+                existFlag = true
             }
+        }
+        if !existFlag{
+            return "すでに削除されています"
         }
         
         //json書き込み
