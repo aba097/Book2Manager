@@ -20,6 +20,19 @@ class UserModel{
     //並べ替え状態を保持する
     var useridx = [0, 1 ,2 ,3 ,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     
+    //更新ボタンを押した
+    func reLoad() -> String {
+        
+        let result = loadUserData()
+        
+        if result != "success" {
+            return result
+        }
+        useridx = [0, 1 ,2 ,3 ,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+        
+        return "success"
+    }
+    
     func loadUserData()->String{
         
         guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {

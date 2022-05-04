@@ -20,42 +20,74 @@ class DeleteModel{
     func setup() -> String{
         
         //refresh　下に引っ張ったときの動作を設定
-       // CollectionView.refreshControl = refreshcontrol
-        //refreshcontrol.addTarget(self, action: #selector(refresh), for: .valueChanged)
-      
+        CollectionView.refreshControl = refreshcontrol
+        refreshcontrol.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        let result = refresh()
+        if result != "success" {
+            return result
+        }
+        return "success"
+    }
+    
+    func load() -> String {
         //データ読み込み
         var result = bookdata.bookLoad()
-        
+        if result != "success" {
+            return result
+        }
+    
+        result = bookdata.jsonParse()
         if result != "success" {
             return result
         }
         
-        result = bookdata.jsonParse()
-        
-        if result != "sucess" {
-            return result
-        }
-        
         result = bookdata.userLoad()
+        if result != "success" {
+            return result
+        }
+
+        return "success"
+    }
+    
+    func delete(_ idx: Int) -> String {
         
-        if result != "sucess" {
+        //json読み込み
+        var result = bookdata.bookLoad()
+        if result != "success" {
             return result
         }
         
-        //refresh()
+        //json削除
+        result = bookdata.delete(idx)
+        if result != "success" {
+            return result
+        }
+        
+        //ファイル読み込み
+        result = refresh()
+        if result != "success" {
+            return result
+        }
+        
+        return "success"
+        
+    }
+    //ここにfileloadしてもいいかも
+    @objc func refresh() -> String{
+        
+        //ファイル読み込み
+        let result = load()
+        if result != "success" {
+            return result
+        }
+        
+        bookdata.setDiplayData(searchtext: vc.SearchBar.text, searchtarget: vc.searchpicker.getTarget(), sortcategorytarget: vc.sortcategorypicker.getCategoryTarget(), sortordertarget: vc.sortorderpicker.getOrderTarget())
+    
+        CollectionView.reloadData()
+        CollectionView.refreshControl?.endRefreshing()
         
         return "success"
     }
-    /*
-    //ここにfileloadしてもいいかも
-    @objc func refresh(){
-        
-        bookdata.setDiplayData(searchtext: vc.SearchBar.text, searchtarget: vc.searchpicker.getTarget(), sortcategorytarget: vc.sortcategorypicker.getCategoryTarget(), sortordertarget: vc.sortorderpicker.getOrderTarget())
-                
-        cells = []
-        CollectionView.reloadData()
-        
-        CollectionView.refreshControl?.endRefreshing()
-    }
- */
+ 
 }

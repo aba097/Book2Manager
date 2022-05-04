@@ -43,6 +43,7 @@ class BookDataModel{
     var comments:[String] = []
     var users:[String] = ["user0", "user1", "user2", "user3", "user4", "use5", "user6", "user7", "user8", "user9", "user10", "user11", "user12", "user13", "user14", "user15"]
     
+    /*==================user====================*/
     //user読み込み
     func userLoad() -> String {
         guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -82,6 +83,7 @@ class BookDataModel{
 
     }
     
+    /*==================book===================*/
     //json読み込み
     func bookLoad() -> String {
         
@@ -153,6 +155,67 @@ class BookDataModel{
             if UIImage(contentsOfFile: fileURL.path) != nil {
                 images[book.id] = fileURL.path
             }
+        }
+        
+        return "success"
+    }
+    
+    //削除アクション
+    func delete(_ idx: Int) -> String {
+        //削除対象の本以外の構造体
+        var newbookjson: [Bookdata] = []
+        //idxはcurrentidのid idは本id
+        let id = currentids[idx]
+        
+        for book in bookjson {
+            if book.id != id {
+                newbookjson.append(book)
+            }
+        }
+        
+        //json書き込み
+        let result = save(&newbookjson)
+        
+        if result != "success" {
+            return result
+        }
+        
+        //images
+        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return "フォルダURL取得エラー"
+        }
+        let fileURL = dirURL.appendingPathComponent(String(id) + ".jpeg")
+        //ファイルが存在する場合
+        if FileManager.default.fileExists(atPath: fileURL.path){
+            do {
+                try FileManager.default.removeItem(at: fileURL)
+            }catch{
+                return "画像削除失敗"
+            }
+        }
+        
+        return "success"
+    }
+    
+    //jsonファイル書き込み
+    func save(_ bookdata: inout [Bookdata])->String{
+        
+        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return "フォルダURL取得エラー"
+        }
+
+        let fileURL = dirURL.appendingPathComponent(bookfilename)
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        guard let jsonValue = try? encoder.encode(bookdata) else {
+            return "JSONエンコードエラー"
+        }
+         
+        do {
+            try jsonValue.write(to: fileURL)
+        } catch {
+            return "JSON書き込みエラー"
         }
         
         return "success"
@@ -284,59 +347,5 @@ class BookDataModel{
         currentids = tmpids
     }
     
-    /*
-    //貸し借りボタンを押されたので変更
-    func borrowreturnAction(_ action: String, user: Int, _ idx: Int) -> String {
-        //ファイルが削除されていないか確認，削除されていれいたらその旨をアラート adminを見て
-        //borrowreturnファイル読み込み　貸し借りが変更されていないか改めて確認　アラート
-        //borrowreturnファイル書き込み
-        
-        //ファイルが削除されていないか確認
-        var admin:[Int] = []
-        var result = fileoperations.fileloadAdmin(&admin)
-        
-        //Adminファイルを読み込み失敗
-        if result != "fileloadAdminsuccess" {
-            return "readErrorAdmin"
-        }
 
-        //本と対応するIDが存在しない
-        if admin.firstIndex(of: idx) == nil {
-            return "bookNotFound"
-        }
-        
-        //貸し借りが変更されていないか確認
-        var checktarget : Int = 0
-        result = fileoperations.fileloadBorrowreturn(idx, &checktarget, state.count)
-
-        //Borrowreturnファイルの読み込み失敗
-        if result != "fileloadBorrowreturnsuccess"{
-            return "readErrorBorrowreturn"
-        }
-        
-        //貸し借りがすでに変更されている
-        if checktarget != state[idx] {
-            return "alreadyChanged"
-        }
-        
-        switch action {
-        case "borrow":
-            state[idx] = user
-        case "return":
-            state[idx] = -1
-        default: break
-        }
-        
-        result  =  fileoperations.filesaveBorrowreturn(&state, &ids)
-        
-        //Borrowreturnファイルの書き込み失敗
-        if result != "filesaveBorrowretrunsucess" {
-            return "writeErrorBorrowreturn"
-        }
-        
-        //貸し借り成功
-        return action
-        
-    }
- */
 }

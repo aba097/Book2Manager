@@ -87,4 +87,19 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    @IBAction func UpdateAction(_ sender: Any) {
+        let result = usermodel.reLoad()
+        
+        if result != "success" {
+            //alert
+            let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            TableView.reloadData()
+        }
+        
+    }
+    
+    
 }

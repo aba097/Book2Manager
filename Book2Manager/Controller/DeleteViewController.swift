@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate  {
+class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UISearchBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var SearchBar: UISearchBar!
     
@@ -34,8 +34,8 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
         deletemodel.vc = self
         deletemodel.CollectionView = self.CollectionView
-        fileloadAlert(deletemodel.setup())
         
+        fileLoadAlert(deletemodel.setup())
     }
     
     func setDelegate(){
@@ -45,11 +45,12 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         SearchBar.delegate = self
         
-        //CollectionView.delegate = self
+        CollectionView.delegate = self
+        CollectionView.dataSource = self
     }
     
-    //ファイル読み込み時のエラーをAlertする
-    func fileloadAlert(_ msg: String){
+    //ファイル関連のエラーをAlertする
+    func fileLoadAlert(_ msg: String){
         
         if msg != "success" {
             //alert
@@ -116,11 +117,114 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // キーボードを閉じる
         view.endEditing(true)
-        
-       // collectionmodel.refresh()
+        fileLoadAlert(deletemodel.refresh())
     }
     
+    /*-------------------UICollectionView-----------------------------------*/
+    //表示するセルの数
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return deletemodel.bookdata.currentids.count // 表示するセルの数
+    }
     
+    //layout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: self.view.bounds.width, height: 263)
+    }
+    
+    //セルの内容
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell else{
+            fatalError("Dequeue failed: AnimalTableViewCell.")
+        }
+        
+        let bookdata = deletemodel.bookdata
+        
+        
+        //image
+        if bookdata.images[bookdata.currentids[indexPath.row]] != "" {
+            cell.ImageView.image = UIImage(contentsOfFile: bookdata.images[bookdata.currentids[indexPath.row]])
+        }
+        else{
+            cell.ImageView.image = nil
+        }
+    
+        //title
+        cell.TitleTextView.text = bookdata.titles[bookdata.currentids[indexPath.row]]
+       
+        //writer
+        cell.AuthorTextView.text = bookdata.authors[bookdata.currentids[indexPath.row]]
+        
+        //publisher
+        cell.PublisherTextView.text = bookdata.publishers[bookdata.currentids[indexPath.row]]
+    
+        //comment
+        cell.CommentTextView.text = bookdata.comments[bookdata.currentids[indexPath.row]]
+        
+        cell.tag = indexPath.row
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
+        longPressGesture.delegate = self
+        cell.addGestureRecognizer(longPressGesture)
+        
+        return cell
+    }
+    
+    //cell Long Press イベント 本の削除
+    @objc func longPress(_ sender: UILongPressGestureRecognizer){
+      
+        //長押し時
+        if sender.state == .began {
+            //削除します---no---end!
+            //       |---yes---本当に削除しますか---no---end!
+            //                              |---yes---deleteAction
+            
+            let alert: UIAlertController = UIAlertController(title: "削除します", message:  "", preferredStyle:  UIAlertController.Style.alert)
+            
+            let deleteaction: UIAlertAction = UIAlertAction(title: "Yes", style: .default, handler:{
+                (action: UIAlertAction!) -> Void in
+                
+                let configalert: UIAlertController = UIAlertController(title: "本当に削除してもいいですか", message:  "", preferredStyle:  UIAlertController.Style.alert)
+                
+                let yesaction: UIAlertAction = UIAlertAction(title: "Yes", style: .default, handler:{
+                    
+                    (action: UIAlertAction!) -> Void in
+                    
+                    //削除
+                    self.deleteAction(sender.view!.tag as Int)
+                })
+                
+                configalert.addAction(yesaction)
+                configalert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+                    
+                self.present(configalert, animated: true, completion: nil)
+                
+            })
+            
+            alert.addAction(deleteaction)
+            alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+                
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func deleteAction(_ idx: Int){
+        //idxはcurrentidのid
+        let result = deletemodel.delete(idx)
+        
+        if result != "success" {
+            //alert
+            let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "success", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
     
 
 }
