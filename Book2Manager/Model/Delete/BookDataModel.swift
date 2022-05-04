@@ -282,18 +282,20 @@ class BookDataModel{
                 }
             }
             
-            //貸出し中の本のみ
-            if searchtarget == "貸出中" {
-                for i in 0 ..< state.count {
-                    if ids.firstIndex(of: i) != nil && state[i] != "" {
-                        idx[i] = true
-                    }
-                }
-            }
-            
             //tureのidのみ表示用としてcurrentidsに追加
             for i in 0 ..< idx.count{
                 if idx[i] {
+                    currentids.append(i)
+                }
+            }
+        }
+        
+        //貸出し中の本のみ
+        if searchtarget == "貸出中" {
+            currentids = []
+            for i in 0 ..< state.count {
+                //存在するi(=id)で借りられている
+                if ids.firstIndex(of: i) != nil && state[i] != "" {
                     currentids.append(i)
                 }
             }
