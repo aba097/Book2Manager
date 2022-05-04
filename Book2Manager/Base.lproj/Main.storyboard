@@ -147,7 +147,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4hu-rG-RUu">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="4hu-rG-RUu" customClass="CollectionViewCell" customModule="Book2Manager" customModuleProvider="target">
                                         <rect key="frame" x="9.5" y="0.0" width="395" height="276"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Y2u-SZ-TAv">
@@ -221,6 +221,13 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="395" height="276"/>
+                                        <connections>
+                                            <outlet property="AuthorTextView" destination="vfg-rM-G7i" id="WAD-f1-8vR"/>
+                                            <outlet property="CommentTextView" destination="mVf-93-lF9" id="NEg-N6-SlC"/>
+                                            <outlet property="ImageView" destination="Y2u-SZ-TAv" id="ztl-pd-w5D"/>
+                                            <outlet property="PublisherTextView" destination="Ot6-A2-Uwl" id="N71-3E-TUB"/>
+                                            <outlet property="TitleTextView" destination="ErS-b0-uWe" id="Mh9-u6-kU9"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -251,6 +258,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="削除" image="trash" catalog="system" id="QRf-l7-CCD"/>
+                    <connections>
+                        <outlet property="CollectionView" destination="PgI-GO-U9h" id="uMn-oW-SQ9"/>
+                        <outlet property="SearchBar" destination="krg-CX-Uq2" id="JFJ-bG-yY4"/>
+                        <outlet property="SearchPickerView" destination="0fR-zH-mmQ" id="TTM-mo-LON"/>
+                        <outlet property="SortCategoryPickerView" destination="fXh-AP-p59" id="u31-u1-VlL"/>
+                        <outlet property="SortOrderPickerView" destination="kdk-X0-QQH" id="YAo-Rd-msx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9qJ-GK-zxM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

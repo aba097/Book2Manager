@@ -9,6 +9,17 @@ import UIKit
 
 class DeleteViewController: UIViewController {
 
+    @IBOutlet weak var SearchBar: UISearchBar!
+    
+    @IBOutlet weak var SearchPickerView: UIPickerView!
+    
+    @IBOutlet weak var SortCategoryPickerView: UIPickerView!
+    
+    @IBOutlet weak var SortOrderPickerView: UIPickerView!
+    
+    @IBOutlet weak var CollectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
