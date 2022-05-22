@@ -9,7 +9,7 @@ import Foundation
 
 class UserModel{
     
-    //シングルトンs
+    //シングルトン
     static let shared = UserModel()
     
     let filename = "user.txt"
