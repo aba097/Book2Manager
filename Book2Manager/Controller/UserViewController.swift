@@ -11,6 +11,10 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
      
     @IBOutlet weak var TableView: UITableView!
     
+    @IBOutlet weak var UpdateActivityIndicatorView: UIActivityIndicatorView!
+    
+    @IBOutlet weak var SaveActivityIndicatorView: UIActivityIndicatorView!
+    
     var usermodel = UserModel.shared
     let dropboxmodel = DropBoxModel.shared
 
@@ -25,14 +29,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         dropboxmodel.userVc = self
         
-        let result = usermodel.loadUserData()
-        
-        if result != "success" {
-            //alert
-            let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
-        }
+        load()
     }
     
     //=============tableview ========================
@@ -75,33 +72,11 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func SaveAction(_ sender: Any) {
-        
-        let result = usermodel.save()
-                
-        if result != "success" {
-            //alert
-            let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
-        }else{
-            let alert = UIAlertController(title: "success", message: result, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
-        }
+        save()
     }
     
     @IBAction func UpdateAction(_ sender: Any) {
-        let result = usermodel.reLoad()
-        
-        if result != "success" {
-            //alert
-            let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
-        }else{
-            TableView.reloadData()
-        }
-        
+        load()
     }
     
     @IBAction func AuthenticationAction(_ sender: Any) {
@@ -129,6 +104,94 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
 
+    }
+    
+    func load(){
+        //グルグル表示
+        UpdateActivityIndicatorView.startAnimating()
+        
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                //ファイルが存在するか確認
+                self.usermodel.exist()
+            }
+            
+            self.usermodel.existSemaphore.wait()
+            
+            if self.usermodel.existState == "doDownload" {
+                DispatchQueue.main.async {
+                    //ダウンロードし，bookdataに格納
+                    self.usermodel.download()
+                }
+                //ダウンロード終了後
+                self.usermodel.downloadSemaphore.wait()
+                
+                if self.usermodel.downloadState != "success" { //error
+                    DispatchQueue.main.sync {
+                        self.UpdateActivityIndicatorView.stopAnimating()
+            
+                        let alert = UIAlertController(title: "error", message: self.usermodel.downloadState, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }else{
+                    DispatchQueue.main.sync {
+                        self.TableView.reloadData()
+                        self.UpdateActivityIndicatorView.stopAnimating()
+                    }
+                }
+            }else if self.usermodel.existState == "notExist" {
+                //defaultuserを用意する
+                self.usermodel.users = ["user0", "user1", "user2", "user3", "user4", "use5", "user6", "user7", "user8", "user9", "user10", "user11", "user12", "user13", "user14", "user15"]
+                
+                self.usermodel.useridx = [0, 1 ,2 ,3 ,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+                DispatchQueue.main.sync {
+                    self.TableView.reloadData()
+                    self.UpdateActivityIndicatorView.stopAnimating()
+                }
+                
+            }else { //error
+                DispatchQueue.main.sync {
+                    self.UpdateActivityIndicatorView.stopAnimating()
+                    
+                    let alert = UIAlertController(title: "error", message: self.usermodel.downloadState, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+           
+        
+    }
+    
+    func save(){
+        //グルグル表示
+        SaveActivityIndicatorView.startAnimating()
+        
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                self.usermodel.upload()
+            }
+            
+            self.usermodel.uploadSemaphore.wait()
+            
+            //アラートの表示はメインスレッドで行う
+            DispatchQueue.main.sync {
+                //グルグル非表示
+                self.SaveActivityIndicatorView.stopAnimating()
+                
+                if self.usermodel.uploadState !=  "success" {
+                    let alert = UIAlertController(title: "error", message: self.usermodel.uploadState, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "success", message: "アップロード成功", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+            
     }
     
     

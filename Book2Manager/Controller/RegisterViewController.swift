@@ -227,7 +227,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     
     @IBAction func AuthenticationAction(_ sender: Any) {
-        /*
         //認証する
         //セマフォはサブスレッドに適用する. Main Threadに適用すると認証が止まってしまう
         DispatchQueue.global(qos: .default).async {
@@ -251,9 +250,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
                 }
             }
         }
-        */
-        
-        //upload()
+       
     }
     
   

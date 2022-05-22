@@ -86,26 +86,46 @@
                                     <action selector="AuthenticationAction:" destination="qD1-Pk-4ja" eventType="touchUpInside" id="k0e-HV-MiS"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="YDy-B6-OcM">
+                                <rect key="frame" x="120" y="773" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="RxI-4V-B7r"/>
+                                    <constraint firstAttribute="height" constant="20" id="j9i-mH-ToH"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="358-sy-NLD">
+                                <rect key="frame" x="252" y="773" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="c0P-u2-oNk"/>
+                                    <constraint firstAttribute="height" constant="20" id="gdS-2J-xtY"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oMQ-Fa-EJP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="YDy-B6-OcM" firstAttribute="leading" secondItem="aDk-rB-ig5" secondAttribute="trailing" constant="20" id="5DQ-WC-wud"/>
                             <constraint firstItem="oMQ-Fa-EJP" firstAttribute="trailing" secondItem="rbf-bY-isN" secondAttribute="trailing" constant="10" id="9xf-Wm-wTC"/>
                             <constraint firstItem="oMQ-Fa-EJP" firstAttribute="bottom" secondItem="7SD-ia-rRD" secondAttribute="bottom" constant="10" id="AgE-TS-jdA"/>
                             <constraint firstItem="oMQ-Fa-EJP" firstAttribute="trailing" secondItem="HuA-K2-mgI" secondAttribute="trailing" constant="20" id="BJF-0z-1Dz"/>
+                            <constraint firstItem="YDy-B6-OcM" firstAttribute="centerY" secondItem="aDk-rB-ig5" secondAttribute="centerY" id="F6j-ig-5ba"/>
                             <constraint firstItem="oMQ-Fa-EJP" firstAttribute="bottom" secondItem="aDk-rB-ig5" secondAttribute="bottom" constant="10" id="QrD-2U-DQX"/>
                             <constraint firstItem="rbf-bY-isN" firstAttribute="leading" secondItem="oMQ-Fa-EJP" secondAttribute="leading" constant="10" id="Wmr-aj-FaW"/>
                             <constraint firstItem="rbf-bY-isN" firstAttribute="top" secondItem="oMQ-Fa-EJP" secondAttribute="top" constant="10" id="c8x-Ad-t0Y"/>
                             <constraint firstItem="oMQ-Fa-EJP" firstAttribute="trailing" secondItem="HuA-K2-mgI" secondAttribute="trailing" constant="20" id="d2D-uN-Baw"/>
                             <constraint firstItem="aDk-rB-ig5" firstAttribute="leading" secondItem="oMQ-Fa-EJP" secondAttribute="leading" constant="20" id="eOE-cE-ndK"/>
+                            <constraint firstItem="358-sy-NLD" firstAttribute="leading" secondItem="7SD-ia-rRD" secondAttribute="trailing" constant="20" id="fDG-bf-eiB"/>
                             <constraint firstItem="HuA-K2-mgI" firstAttribute="top" secondItem="rbf-bY-isN" secondAttribute="bottom" constant="10" id="rDq-LH-Jzg"/>
                             <constraint firstItem="7SD-ia-rRD" firstAttribute="centerX" secondItem="y1s-UR-8ir" secondAttribute="centerX" id="wR5-zE-q4m"/>
+                            <constraint firstItem="358-sy-NLD" firstAttribute="centerY" secondItem="7SD-ia-rRD" secondAttribute="centerY" id="wkd-uT-5zZ"/>
                             <constraint firstItem="7SD-ia-rRD" firstAttribute="top" secondItem="rbf-bY-isN" secondAttribute="bottom" constant="10" id="yGX-LB-MfR"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="User" image="person" catalog="system" id="xR5-Qk-pjD"/>
                     <connections>
+                        <outlet property="SaveActivityIndicatorView" destination="358-sy-NLD" id="qdR-oe-pwD"/>
                         <outlet property="TableView" destination="rbf-bY-isN" id="7f5-vw-hxp"/>
+                        <outlet property="UpdateActivityIndicatorView" destination="YDy-B6-OcM" id="nC0-gV-aPt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIH-8B-saR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

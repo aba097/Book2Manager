@@ -12,7 +12,7 @@ import SwiftyDropbox
 class RegisterModel {
     
     let filename = "bookdata.json"
-    let filepath = NSHomeDirectory() + "/Documents/" + "bookdata.json"
+    let filepath = "/test/path/"
     
     var bookdata: [Bookdata] = []
     
@@ -49,12 +49,12 @@ class RegisterModel {
         
         let client = DropboxClientsManager.authorizedClient!
         //ファイル一覧を取得
-        client.files.listFolder(path: "/test/path/").response { response, error in
+        client.files.listFolder(path: filepath).response { response, error in
             if let response = response {
                 var flag = false
                 for entry in response.entries {
                     //print(entry.name) ファイル一覧
-                    if entry.name == "bookdata.json" {
+                    if entry.name == self.filename {
                         self.existState = "doDownload"
                         flag = true
                     }
@@ -81,11 +81,8 @@ class RegisterModel {
         
         let client = DropboxClientsManager.authorizedClient!
         
-        //bookdata.jsonの存在確認
-        //ない場合はbookdata = []
-        
         // Download to Data
-        client.files.download(path: "/test/path/bookdata.json")
+        client.files.download(path: filepath + filename)
             .response { response, error in
                 if let response = response {
                     
@@ -135,7 +132,7 @@ class RegisterModel {
             imageName = String(newId) + ".jpeg"
             let data = image.image?.jpegData(compressionQuality: 0.8)
             
-            client.files.upload(path: "/test/path/" + imageName, mode: .overwrite, input: data!)
+            client.files.upload(path: filepath + imageName, mode: .overwrite, input: data!)
                 .response { response, error in
                     if let response = response {
                         //print(response)
@@ -161,7 +158,7 @@ class RegisterModel {
         }
         
       
-        client.files.upload(path: "/test/path/bookdata.json", mode: .overwrite, input: data)
+        client.files.upload(path: filepath + filename, mode: .overwrite, input: data)
             .response { response, error in
                 if let response = response {
                     //print(response)
@@ -177,121 +174,6 @@ class RegisterModel {
                 print(progressData)
             }
             
-    }
-    
-    
-    func register(_ title: String, _ author: String, _ publisher: String, _ comment: String, _ image: UIImageView)->String{
-        
-        //JSONを読み込む
-        var readRes = readJson()
-        if readRes.msg != "success"{
-            return readRes.msg
-        }
-        
-        //IDを決定する
-        var maxid = -1
-        for book in readRes.bookdata{
-            maxid = max(book.id, maxid)
-        }
-        maxid += 1
-
-        //imageviewの画像を保存
-        let imageRes = writeImage(image, String(maxid))
-    
-        if imageRes != "success" && imageRes != "noimage"{
-            return imageRes
-        }
-        
-        var imagename = ""
-        if imageRes != "noimage" {
-            imagename = String(maxid) + ".jpeg"
-        }
-        
-        //登録するデータをJSONに追加
-        readRes.bookdata.append(Bookdata(id: maxid, title: title, author: author, publisher: publisher, comment: comment, image: imagename, state: ""))
-       
-        //JSON書き込み
-        let writeRes = writeJson(&readRes.bookdata)
-        
-        if writeRes != "success" {
-            return writeRes
-        }
-        
-        return "success"
-    }
-    
-    //jsonファイル読み込み
-    func readJson()->(msg: String, bookdata: [Bookdata]){
-
-        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return ("フォルダURL取得エラー", [Bookdata]())
-        }
-        
-        //ファイルが存在しない場合は1回目ということでsuccessを返す
-        if !FileManager.default.fileExists(atPath: filepath){
-            return ("success", [Bookdata]())
-        }
-
-        let fileURL = dirURL.appendingPathComponent(filename)
-
-        guard let data = try? Data(contentsOf: fileURL) else {
-            return ("JSON読み込みエラー", [Bookdata]())
-        }
-         
-        let decoder = JSONDecoder()
-        guard let bookdata = try? decoder.decode([Bookdata].self, from: data) else {
-            return ("JSONデコードエラー", [Bookdata]())
-        }
-        
-        return ("success", bookdata)
-    }
-    
-    //jsonファイル書き込み
-    func writeJson(_ bookdata: inout [Bookdata])->String{
-        
-        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return "フォルダURL取得エラー"
-        }
-
-        let fileURL = dirURL.appendingPathComponent(filename)
-        
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        guard let jsonValue = try? encoder.encode(bookdata) else {
-            return "JSONエンコードエラー"
-        }
-         
-        do {
-            try jsonValue.write(to: fileURL)
-        } catch {
-            return "JSON書き込みエラー"
-        }
-        
-        return "success"
-    }
-    
-    //imageviewの画像を保存
-    func writeImage(_ image: UIImageView, _ id: String)->String{
-        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return "フォルダURL取得エラー"
-        }
-        
-        let fileURL = dirURL.appendingPathComponent(id + ".jpeg")
-        if image.image != nil {
-            //画像保存
-            do {
-                try image.image?.jpegData(compressionQuality: 0.8)?.write(to: fileURL)
-            }catch{
-                return "画像書き込みエラー"
-            }
-        }else{
-          return "noimage"
-        }
-        
-        return "success"
-        
-    
-        
     }
     
 }
