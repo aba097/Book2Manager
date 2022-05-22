@@ -74,16 +74,31 @@
                                     <action selector="UpdateAction:" destination="qD1-Pk-4ja" eventType="touchUpInside" id="TBH-JG-XzN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuA-K2-mgI">
+                                <rect key="frame" x="344" y="763" width="50" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Gqw-go-cNH"/>
+                                    <constraint firstAttribute="height" constant="40" id="smW-lX-jPk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                                <state key="normal" title="AuthC"/>
+                                <connections>
+                                    <action selector="AuthenticationAction:" destination="qD1-Pk-4ja" eventType="touchUpInside" id="k0e-HV-MiS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oMQ-Fa-EJP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="oMQ-Fa-EJP" firstAttribute="trailing" secondItem="rbf-bY-isN" secondAttribute="trailing" constant="10" id="9xf-Wm-wTC"/>
                             <constraint firstItem="oMQ-Fa-EJP" firstAttribute="bottom" secondItem="7SD-ia-rRD" secondAttribute="bottom" constant="10" id="AgE-TS-jdA"/>
+                            <constraint firstItem="oMQ-Fa-EJP" firstAttribute="trailing" secondItem="HuA-K2-mgI" secondAttribute="trailing" constant="20" id="BJF-0z-1Dz"/>
                             <constraint firstItem="oMQ-Fa-EJP" firstAttribute="bottom" secondItem="aDk-rB-ig5" secondAttribute="bottom" constant="10" id="QrD-2U-DQX"/>
                             <constraint firstItem="rbf-bY-isN" firstAttribute="leading" secondItem="oMQ-Fa-EJP" secondAttribute="leading" constant="10" id="Wmr-aj-FaW"/>
                             <constraint firstItem="rbf-bY-isN" firstAttribute="top" secondItem="oMQ-Fa-EJP" secondAttribute="top" constant="10" id="c8x-Ad-t0Y"/>
+                            <constraint firstItem="oMQ-Fa-EJP" firstAttribute="trailing" secondItem="HuA-K2-mgI" secondAttribute="trailing" constant="20" id="d2D-uN-Baw"/>
                             <constraint firstItem="aDk-rB-ig5" firstAttribute="leading" secondItem="oMQ-Fa-EJP" secondAttribute="leading" constant="20" id="eOE-cE-ndK"/>
+                            <constraint firstItem="HuA-K2-mgI" firstAttribute="top" secondItem="rbf-bY-isN" secondAttribute="bottom" constant="10" id="rDq-LH-Jzg"/>
                             <constraint firstItem="7SD-ia-rRD" firstAttribute="centerX" secondItem="y1s-UR-8ir" secondAttribute="centerX" id="wR5-zE-q4m"/>
                             <constraint firstItem="7SD-ia-rRD" firstAttribute="top" secondItem="rbf-bY-isN" secondAttribute="bottom" constant="10" id="yGX-LB-MfR"/>
                         </constraints>
@@ -245,12 +260,25 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qm-jt-jHW">
+                                <rect key="frame" x="334" y="64" width="60" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="G1p-7Y-xpo"/>
+                                    <constraint firstAttribute="height" constant="40" id="qGh-mm-teC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="AuthC"/>
+                                <connections>
+                                    <action selector="AuthenticationAction:" destination="YYN-Vm-74D" eventType="touchUpInside" id="gdn-sy-hqh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ozi-ae-cD4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="OmZ-kb-ddu" firstAttribute="top" secondItem="ozi-ae-cD4" secondAttribute="top" constant="40" id="1w3-OW-Zg3"/>
                             <constraint firstItem="0fR-zH-mmQ" firstAttribute="leading" secondItem="ozi-ae-cD4" secondAttribute="leading" id="34M-gK-MIW"/>
+                            <constraint firstItem="ozi-ae-cD4" firstAttribute="trailing" secondItem="1qm-jt-jHW" secondAttribute="trailing" constant="20" id="4VE-Ta-Csl"/>
                             <constraint firstItem="OmZ-kb-ddu" firstAttribute="leading" secondItem="ozi-ae-cD4" secondAttribute="leading" constant="20" id="60Z-cW-yKW"/>
                             <constraint firstItem="Bbk-tQ-hIu" firstAttribute="top" secondItem="0fR-zH-mmQ" secondAttribute="bottom" constant="15" id="BBY-vM-Bcu"/>
                             <constraint firstItem="krg-CX-Uq2" firstAttribute="leading" secondItem="ozi-ae-cD4" secondAttribute="leading" id="EXc-S7-67r"/>
@@ -264,6 +292,7 @@
                             <constraint firstItem="krg-CX-Uq2" firstAttribute="trailing" secondItem="ozi-ae-cD4" secondAttribute="trailing" id="bAc-vE-8Hh"/>
                             <constraint firstItem="Bbk-tQ-hIu" firstAttribute="leading" secondItem="ozi-ae-cD4" secondAttribute="leading" constant="20" id="bIT-KI-dsF"/>
                             <constraint firstItem="0fR-zH-mmQ" firstAttribute="trailing" secondItem="ozi-ae-cD4" secondAttribute="trailing" id="bYd-c0-H9F"/>
+                            <constraint firstItem="1qm-jt-jHW" firstAttribute="bottom" secondItem="OmZ-kb-ddu" secondAttribute="bottom" id="eWp-I0-gm9"/>
                             <constraint firstItem="fXh-AP-p59" firstAttribute="top" secondItem="Bbk-tQ-hIu" secondAttribute="bottom" constant="5" id="g2T-B6-OVg"/>
                             <constraint firstItem="fXh-AP-p59" firstAttribute="width" secondItem="ozi-ae-cD4" secondAttribute="width" multiplier="0.7" id="mfl-qd-KSb"/>
                             <constraint firstItem="0fR-zH-mmQ" firstAttribute="top" secondItem="krg-CX-Uq2" secondAttribute="bottom" constant="5" id="qEL-nI-gtC"/>
@@ -422,7 +451,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOj-be-wfR">
-                                                <rect key="frame" x="172" y="927.5" width="70" height="35"/>
+                                                <rect key="frame" x="172" y="907.5" width="70" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="5h7-Qt-hFu"/>
                                                     <constraint firstAttribute="height" constant="35" id="jm5-P0-HPO"/>
@@ -453,13 +482,33 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCp-9s-PRK">
+                                                <rect key="frame" x="182" y="962.5" width="50" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="85H-Eb-mqF"/>
+                                                    <constraint firstAttribute="width" constant="50" id="KNZ-nD-MGE"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                                                <state key="normal" title="AuthC"/>
+                                                <connections>
+                                                    <action selector="AuthenticationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2pZ-FV-PJH"/>
+                                                </connections>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="6Yt-ff-sDi">
+                                                <rect key="frame" x="262" y="915" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="Q7b-I5-F96"/>
+                                                    <constraint firstAttribute="width" constant="20" id="UsG-F2-sN6"/>
+                                                </constraints>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="7Sb-hb-8nb" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="1fD-px-GiY"/>
                                             <constraint firstItem="qbk-Ke-ehD" firstAttribute="top" secondItem="umN-bb-2Mk" secondAttribute="bottom" constant="15" id="32K-s3-8XO"/>
                                             <constraint firstItem="eGk-wv-mgu" firstAttribute="top" secondItem="AdY-Ng-M2j" secondAttribute="bottom" constant="20" id="721-7K-iXV"/>
+                                            <constraint firstItem="6Yt-ff-sDi" firstAttribute="leading" secondItem="EOj-be-wfR" secondAttribute="trailing" constant="20" id="8mx-67-2Sf"/>
                                             <constraint firstItem="EOj-be-wfR" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="92h-MG-nsY"/>
-                                            <constraint firstItem="EOj-be-wfR" firstAttribute="top" secondItem="PM1-Ht-fkL" secondAttribute="bottom" constant="40" id="9Dn-Sm-jKq"/>
+                                            <constraint firstItem="EOj-be-wfR" firstAttribute="top" secondItem="PM1-Ht-fkL" secondAttribute="bottom" constant="20" id="9Dn-Sm-jKq"/>
                                             <constraint firstItem="PM1-Ht-fkL" firstAttribute="top" secondItem="oN5-V2-Z0b" secondAttribute="bottom" constant="20" id="9gv-JF-bq1"/>
                                             <constraint firstItem="qbk-Ke-ehD" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="Eda-oD-8My"/>
                                             <constraint firstItem="apK-rY-oe1" firstAttribute="leading" secondItem="oiu-H1-X0h" secondAttribute="trailing" constant="5" id="FlW-rI-do0"/>
@@ -490,6 +539,9 @@
                                             <constraint firstItem="2fc-O0-qgG" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="lVP-MH-BDK"/>
                                             <constraint firstItem="r9r-pl-vcg" firstAttribute="centerY" secondItem="2W2-df-tMc" secondAttribute="centerY" id="lsZ-4e-0wc"/>
                                             <constraint firstItem="7Sb-hb-8nb" firstAttribute="top" secondItem="h1U-HR-8an" secondAttribute="bottom" constant="415" id="mXk-sg-eq1"/>
+                                            <constraint firstItem="VCp-9s-PRK" firstAttribute="top" secondItem="EOj-be-wfR" secondAttribute="bottom" constant="20" id="nhJ-DL-BYF"/>
+                                            <constraint firstItem="VCp-9s-PRK" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="ruY-q8-MxS"/>
+                                            <constraint firstItem="6Yt-ff-sDi" firstAttribute="centerY" secondItem="EOj-be-wfR" secondAttribute="centerY" id="tpT-Lt-Wa4"/>
                                             <constraint firstItem="2fc-O0-qgG" firstAttribute="top" secondItem="2W2-df-tMc" secondAttribute="bottom" constant="35" id="wDe-2L-TtE"/>
                                             <constraint firstItem="AdY-Ng-M2j" firstAttribute="top" secondItem="1qu-4X-3Pe" secondAttribute="bottom" constant="20" id="wi7-ee-ldZ"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="900" id="xI2-if-FnU"/>
@@ -520,6 +572,7 @@
                     <tabBarItem key="tabBarItem" title="Register" image="gearshape" catalog="system" id="87t-BT-1TJ"/>
                     <size key="freeformSize" width="414" height="1300"/>
                     <connections>
+                        <outlet property="ActivityIndicatorView" destination="6Yt-ff-sDi" id="Lfv-Nm-N4H"/>
                         <outlet property="AuthorTextField" destination="r9r-pl-vcg" id="m16-aD-r5u"/>
                         <outlet property="CaptureView" destination="oN5-V2-Z0b" id="hcp-1e-2F4"/>
                         <outlet property="CommentTextView" destination="1qu-4X-3Pe" id="xcj-ml-D0D"/>

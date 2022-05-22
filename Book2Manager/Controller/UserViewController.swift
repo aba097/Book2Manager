@@ -12,7 +12,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var TableView: UITableView!
     
     var usermodel = UserModel.shared
-    
+    let dropboxmodel = DropBoxModel.shared
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         TableView.dataSource = self
         //並べ替え，削除アイコン表示
         TableView.isEditing = true
+        
+        dropboxmodel.userVc = self
         
         let result = usermodel.loadUserData()
         
@@ -99,6 +102,33 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             TableView.reloadData()
         }
         
+    }
+    
+    @IBAction func AuthenticationAction(_ sender: Any) {
+        //認証する
+        //セマフォはサブスレッドに適用する. Main Threadに適用すると認証が止まってしまう
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                //認証
+                // 認証をセマフォでデットロックしてしまうためMain Threadで実行する
+                self.dropboxmodel.authentication("User")
+            }
+            //sginalは認証が終了後SceneDelegate.swiftで行われる
+            self.dropboxmodel.authSemaphore.wait()
+            //アラートの表示はメインスレッドで行う
+            DispatchQueue.main.sync {
+                if self.dropboxmodel.authState {
+                    let alert = UIAlertController(title: "success", message: "認証成功", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "error", message: "認証失敗", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+
     }
     
     

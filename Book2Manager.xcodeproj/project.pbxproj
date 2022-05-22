@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		159090730EF3CE137ECA36DA /* Pods_Book2Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6DC35C27875F8B47F6649F /* Pods_Book2Manager.framework */; };
+		43042830283A3B0500824BBB /* DropBoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4304282F283A3B0500824BBB /* DropBoxModel.swift */; };
 		43131B64281A4F1A004A0EAA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43131B63281A4F1A004A0EAA /* TableViewCell.swift */; };
 		43131B66281A57E9004A0EAA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43131B65281A57E9004A0EAA /* UserModel.swift */; };
 		43131B6A282259E5004A0EAA /* DeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43131B69282259E5004A0EAA /* DeleteModel.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4304282F283A3B0500824BBB /* DropBoxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxModel.swift; sourceTree = "<group>"; };
 		43131B63281A4F1A004A0EAA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		43131B65281A57E9004A0EAA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		43131B69282259E5004A0EAA /* DeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteModel.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		4304282E283A394400824BBB /* Dropbox */ = {
 			isa = PBXGroup;
 			children = (
+				4304282F283A3B0500824BBB /* DropBoxModel.swift */,
 			);
 			path = Dropbox;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			files = (
 				43FBBD942814224E00C72574 /* UserViewController.swift in Sources */,
 				43131B6A282259E5004A0EAA /* DeleteModel.swift in Sources */,
+				43042830283A3B0500824BBB /* DropBoxModel.swift in Sources */,
 				43FBBD792814162700C72574 /* AppDelegate.swift in Sources */,
 				43FBBD97281613C000C72574 /* Barcode.swift in Sources */,
 				43FBBD9C281616E100C72574 /* isbnManager.swift in Sources */,

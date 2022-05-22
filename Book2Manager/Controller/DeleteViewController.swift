@@ -23,6 +23,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let searchpicker = SearchPickerModel()
     let sortcategorypicker = SortCategoryPickerModel()
     let sortorderpicker = SortOrderPickerModel()
+    let dropboxmodel = DropBoxModel.shared
     
     private let deletemodel = DeleteModel()
 
@@ -34,6 +35,8 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
         deletemodel.vc = self
         deletemodel.CollectionView = self.CollectionView
+        
+        dropboxmodel.deleteVc = self
         
         fileLoadAlert(deletemodel.setup())
     }
@@ -224,7 +227,35 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    
+    @IBAction func AuthenticationAction(_ sender: Any) {
+        //認証する
+        //セマフォはサブスレッドに適用する. Main Threadに適用すると認証が止まってしまう
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                //認証
+                // 認証をセマフォでデットロックしてしまうためMain Threadで実行する
+                self.dropboxmodel.authentication("Delete")
+            }
+            //sginalは認証が終了後SceneDelegate.swiftで行われる
+            self.dropboxmodel.authSemaphore.wait()
+            //アラートの表示はメインスレッドで行う
+            DispatchQueue.main.sync {
+                if self.dropboxmodel.authState {
+                    let alert = UIAlertController(title: "success", message: "認証成功", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "error", message: "認証失敗", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
 
+    }
+    
     
 
 }

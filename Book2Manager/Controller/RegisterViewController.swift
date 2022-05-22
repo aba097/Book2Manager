@@ -30,9 +30,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     @IBOutlet weak var ScrollView: UIScrollView!
     
+    //グルグル
+    @IBOutlet weak var ActivityIndicatorView: UIActivityIndicatorView!
+    
     //model
     var barcodemodel = BarcodeModel()
     var registermodel = RegisterModel()
+    let dropboxmodel = DropBoxModel.shared
+    
+    //くるくる
+    var activityIndicatorView = UIActivityIndicatorView()
     
     //フォトライブラリ操作
     var imagepicker: UIImagePickerController!
@@ -46,6 +53,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         IsbnTextField.delegate = self
         CommentTextView.layer.cornerRadius = 5
         
+        dropboxmodel.registerVc = self
+
         textViewSetup()
         barcodemodel.setup(CaptureView, TitleTextField, AuthorTextField, PublisherTextField, CommentTextView, ImageView, RegisterButton)
        
@@ -197,8 +206,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             comment = CommentTextView.text!
         }
         
+        //登録
+        upload(title, author, publisher, comment, ImageView)
+        /*
         let result = registermodel.register(title, author, publisher, comment, ImageView)
-        
+
         if result != "success" {
             //alert
             let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
@@ -209,6 +221,113 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true, completion: nil)
         }
+        */
+        
+    }
+    
+    
+    @IBAction func AuthenticationAction(_ sender: Any) {
+        /*
+        //認証する
+        //セマフォはサブスレッドに適用する. Main Threadに適用すると認証が止まってしまう
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                //認証
+                // 認証をセマフォでデットロックしてしまうためMain Threadで実行する
+                self.dropboxmodel.authentication("Register")
+            }
+            //sginalは認証が終了後SceneDelegate.swiftで行われる
+            self.dropboxmodel.authSemaphore.wait()
+            //アラートの表示はメインスレッドで行う
+            DispatchQueue.main.sync {
+                if self.dropboxmodel.authState {
+                    let alert = UIAlertController(title: "success", message: "認証成功", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "error", message: "認証失敗", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        */
+        
+        //upload()
+    }
+    
+  
+    func upload(_ title: String, _ author: String, _ publisher: String, _ comment: String, _ image: UIImageView){
+        
+        //グルグル表示
+        ActivityIndicatorView.startAnimating()
+        
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                //ファイルが存在するか確認
+                self.registermodel.exist()
+            }
+            
+            self.registermodel.existSemaphore.wait()
+            
+            if self.registermodel.existState == "doDownload" {
+                DispatchQueue.main.async {
+                    //ダウンロードし，bookdataに格納
+                    self.registermodel.download()
+                }
+                //ダウンロード終了後
+                self.registermodel.downloadSemaphore.wait()
+                
+                if self.registermodel.downloadState != "success" { //error
+                    DispatchQueue.main.sync {
+                        self.ActivityIndicatorView.stopAnimating()
+            
+                        let alert = UIAlertController(title: "error", message: self.registermodel.downloadState, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+
+                    return
+                }
+            }else if self.registermodel.existState == "notExist" {
+                //空のbookdataを用意する
+                self.registermodel.bookdata = []
+            }else { //error
+                DispatchQueue.main.sync {
+                    self.ActivityIndicatorView.stopAnimating()
+                    
+                    let alert = UIAlertController(title: "error", message: self.registermodel.downloadState, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                return
+            }
+            
+            //アップロードする
+            DispatchQueue.main.async {
+                //セマフォでデットロックしてしまうためMain Threadで実行する
+                self.registermodel.upload(title, author, publisher, comment, image)
+            }
+            //アップロード終了後
+            self.registermodel.uploadSemaphore.wait()
+            
+            //アラートの表示はメインスレッドで行う
+            DispatchQueue.main.sync {
+                //グルグル非表示
+                self.ActivityIndicatorView.stopAnimating()
+                
+                if self.registermodel.uploadState !=  "success" {
+                    let alert = UIAlertController(title: "error", message: self.registermodel.uploadState, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "success", message: "アップロード成功", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    
         
     }
     
