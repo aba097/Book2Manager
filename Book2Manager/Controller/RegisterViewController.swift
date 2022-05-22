@@ -9,7 +9,6 @@ import UIKit
 import AVFoundation
 import Foundation
 
-
 class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var TitleTextField: UITextField!
