@@ -292,6 +292,13 @@
                                     <action selector="AuthenticationAction:" destination="YYN-Vm-74D" eventType="touchUpInside" id="gdn-sy-hqh"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="q01-0j-4Cx">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="2Qt-4a-k5B"/>
+                                    <constraint firstAttribute="height" constant="20" id="V08-1F-LHs"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ozi-ae-cD4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -305,6 +312,7 @@
                             <constraint firstItem="ozi-ae-cD4" firstAttribute="bottom" secondItem="PgI-GO-U9h" secondAttribute="bottom" id="FEJ-AC-1Ze"/>
                             <constraint firstItem="ozi-ae-cD4" firstAttribute="trailing" secondItem="PgI-GO-U9h" secondAttribute="trailing" id="J3o-kl-mbJ"/>
                             <constraint firstItem="kdk-X0-QQH" firstAttribute="width" secondItem="ozi-ae-cD4" secondAttribute="width" multiplier="0.3" id="JO7-w8-Rg7"/>
+                            <constraint firstItem="q01-0j-4Cx" firstAttribute="centerX" secondItem="ZQG-jo-U9u" secondAttribute="centerX" id="LZp-uJ-cSF"/>
                             <constraint firstItem="fXh-AP-p59" firstAttribute="leading" secondItem="ozi-ae-cD4" secondAttribute="leading" id="LjS-W7-0kj"/>
                             <constraint firstItem="PgI-GO-U9h" firstAttribute="leading" secondItem="ozi-ae-cD4" secondAttribute="leading" id="P23-fl-gmO"/>
                             <constraint firstItem="kdk-X0-QQH" firstAttribute="trailing" secondItem="ozi-ae-cD4" secondAttribute="trailing" id="S5D-2k-jdt"/>
@@ -316,12 +324,14 @@
                             <constraint firstItem="fXh-AP-p59" firstAttribute="top" secondItem="Bbk-tQ-hIu" secondAttribute="bottom" constant="5" id="g2T-B6-OVg"/>
                             <constraint firstItem="fXh-AP-p59" firstAttribute="width" secondItem="ozi-ae-cD4" secondAttribute="width" multiplier="0.7" id="mfl-qd-KSb"/>
                             <constraint firstItem="0fR-zH-mmQ" firstAttribute="top" secondItem="krg-CX-Uq2" secondAttribute="bottom" constant="5" id="qEL-nI-gtC"/>
+                            <constraint firstItem="q01-0j-4Cx" firstAttribute="centerY" secondItem="ZQG-jo-U9u" secondAttribute="centerY" id="vWE-oF-EQo"/>
                             <constraint firstItem="kdk-X0-QQH" firstAttribute="top" secondItem="fXh-AP-p59" secondAttribute="top" id="vkC-KX-3Un"/>
                             <constraint firstItem="krg-CX-Uq2" firstAttribute="top" secondItem="OmZ-kb-ddu" secondAttribute="bottom" constant="5" id="xH2-Ow-jZR"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Delete" image="trash" catalog="system" id="QRf-l7-CCD"/>
                     <connections>
+                        <outlet property="ActivityIndicatorView" destination="q01-0j-4Cx" id="JvS-4G-B3B"/>
                         <outlet property="CollectionView" destination="PgI-GO-U9h" id="uMn-oW-SQ9"/>
                         <outlet property="SearchBar" destination="krg-CX-Uq2" id="JFJ-bG-yY4"/>
                         <outlet property="SearchPickerView" destination="0fR-zH-mmQ" id="TTM-mo-LON"/>

@@ -53,7 +53,7 @@ class UserModel{
                         flag = true
                     }
                 }
-                if !flag { //bookdata.jsonが存在しない
+                if !flag { //user.txtが存在しない
                     self.existState = "notExist"
                 }
                 self.existSemaphore.signal()

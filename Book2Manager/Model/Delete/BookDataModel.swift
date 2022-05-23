@@ -7,14 +7,27 @@
 
 import Foundation
 import UIKit
+import SwiftyDropbox
 
 class BookDataModel{
     
     let bookfilename = "bookdata.json"
-    let bookfilepath = NSHomeDirectory() + "/Documents/" + "bookdata.json"
+    let bookfilepath = "/test/path/"
     
     let userfilename = "user.txt"
-    let userfilepath = NSHomeDirectory() + "/Documents/" + "user.txt"
+    let userfilepath = "/test/path/"
+    
+    //upload
+    let uploadSemaphore = DispatchSemaphore(value: 0)
+    var uploadState = ""
+    
+    //download
+    let downloadSemaphore = DispatchSemaphore(value: 0)
+    var downloadState = ""
+    
+    //exist
+    let existSemaphore = DispatchSemaphore(value: 0)
+    var existState = ""
     
     //JSON struct
     struct Bookdata: Codable {
@@ -44,6 +57,72 @@ class BookDataModel{
     var users:[String] = ["user0", "user1", "user2", "user3", "user4", "use5", "user6", "user7", "user8", "user9", "user10", "user11", "user12", "user13", "user14", "user15"]
     
     /*==================user====================*/
+    //user.txtが存在するか確認
+    func userExist(){
+        if DropboxClientsManager.authorizedClient == nil {
+            existState = "認証してください"
+            existSemaphore.signal()
+            return
+        }
+        
+        let client = DropboxClientsManager.authorizedClient!
+        //ファイル一覧を取得
+        client.files.listFolder(path: userfilepath).response { response, error in
+            if let response = response {
+                var flag = false
+                for entry in response.entries {
+                    //print(entry.name) ファイル一覧
+                    if entry.name == self.userfilename {
+                        self.existState = "doDownload"
+                        flag = true
+                    }
+                }
+                if !flag { //user.txtが存在しない
+                    self.existState = "notExist"
+                }
+                self.existSemaphore.signal()
+            } else if let error = error {
+                print(error)
+                self.existState = "ファイル一覧取得失敗"
+                self.existSemaphore.signal()
+            }
+        }
+    }
+    
+    //dropboxからダウンロード
+    func userDownload(){
+        if DropboxClientsManager.authorizedClient == nil {
+            downloadState = "認証してください"
+            downloadSemaphore.signal()
+            return
+        }
+        
+        let client = DropboxClientsManager.authorizedClient!
+        
+        // Download to Data
+        client.files.download(path: userfilepath + userfilename)
+            .response { response, error in
+                if let response = response {
+                    
+                    let fileContents = response.1
+                    let text = String(data: fileContents, encoding: .utf8)
+                    
+                    //usersに追加
+                    self.users = text!.components(separatedBy: "\n").filter{!$0.isEmpty}
+                    
+                    self.downloadState = "success"
+                    self.downloadSemaphore.signal()
+                } else if let error = error {
+                    print(error)
+                    self.downloadState = "ダウンロード失敗"
+                    self.downloadSemaphore.signal()
+                }
+            }
+            .progress { progressData in
+                print(progressData)
+            }
+    }
+    
     //user読み込み
     func userLoad() -> String {
         guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -84,6 +163,76 @@ class BookDataModel{
     }
     
     /*==================book===================*/
+    //bookdata.jsonが存在するか確認
+    func bookExist(){
+        if DropboxClientsManager.authorizedClient == nil {
+            existState = "認証してください"
+            existSemaphore.signal()
+            return
+        }
+        
+        let client = DropboxClientsManager.authorizedClient!
+        //ファイル一覧を取得
+        client.files.listFolder(path: bookfilepath).response { response, error in
+            if let response = response {
+                var flag = false
+                for entry in response.entries {
+                    //print(entry.name) ファイル一覧
+                    if entry.name == self.bookfilename {
+                        self.existState = "doDownload"
+                        flag = true
+                    }
+                }
+                if !flag { //bookdata.jsonが存在しない
+                    self.existState = "notExist"
+                }
+                self.existSemaphore.signal()
+            } else if let error = error {
+                print(error)
+                self.existState = "ファイル一覧取得失敗"
+                self.existSemaphore.signal()
+            }
+        }
+    }
+    
+    //dropboxからダウンロード
+    func bookDownload(){
+        if DropboxClientsManager.authorizedClient == nil {
+            downloadState = "認証してください"
+            downloadSemaphore.signal()
+            return
+        }
+        
+        let client = DropboxClientsManager.authorizedClient!
+        
+        // Download to Data
+        client.files.download(path: bookfilepath + bookfilename)
+            .response { response, error in
+                if let response = response {
+                    
+                    let fileContents = response.1
+                    guard let tmpbookdata = try? JSONDecoder().decode([Bookdata].self, from: fileContents) else {
+                        self.downloadState = "JSONデコードエラー"
+                        self.downloadSemaphore.signal()
+                        return
+                    }
+                    //ダウンロード成功後 bookdataに追加
+                    self.bookjson = tmpbookdata
+                    
+                    //それぞれの配列に分割
+                    self.downloadState = self.jsonParse()
+                    self.downloadSemaphore.signal()
+                } else if let error = error {
+                    print(error)
+                    self.downloadState = "ダウンロード失敗"
+                    self.downloadSemaphore.signal()
+                }
+            }
+            .progress { progressData in
+                print(progressData)
+            }
+    }
+    
     //json読み込み
     func bookLoad() -> String {
         
@@ -127,11 +276,6 @@ class BookDataModel{
             return "success"
         }
         
-        //パース
-        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return "フォルダURL取得エラー"
-        }
-        
         titles = []
         authors = []
         publishers = []
@@ -154,12 +298,9 @@ class BookDataModel{
             publishers[book.id] = book.publisher
             comments[book.id] = book.comment
             state[book.id] = book.state
-            
-            let fileURL = dirURL.appendingPathComponent(book.image)
-            //ファイルが存在する場合はpathを代入
-            if UIImage(contentsOfFile: fileURL.path) != nil {
-                images[book.id] = fileURL.path
-            }
+
+            images[book.id] = ""
+
         }
         
         return "success"
@@ -184,29 +325,46 @@ class BookDataModel{
             return "すでに削除されています"
         }
         
-        //json書き込み
-        let result = save(&newbookjson)
-        
-        if result != "success" {
-            return result
-        }
-        
-        //images
-        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return "フォルダURL取得エラー"
-        }
-        let fileURL = dirURL.appendingPathComponent(String(id) + ".jpeg")
-        //ファイルが存在する場合
-        if FileManager.default.fileExists(atPath: fileURL.path){
-            do {
-                try FileManager.default.removeItem(at: fileURL)
-            }catch{
-                return "画像削除失敗"
-            }
-        }
+        //新しいものに更新
+        bookjson = newbookjson
         
         return "success"
     }
+    
+    func bookUpload() {
+        if DropboxClientsManager.authorizedClient == nil {
+            uploadState = "認証してください"
+            uploadSemaphore.signal()
+            return
+        }
+        
+        let client = DropboxClientsManager.authorizedClient!
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        guard let data = try? encoder.encode(bookjson) else {
+            uploadState = "JSONエンコードエラー"
+            uploadSemaphore.signal()
+            return
+        }
+        
+        client.files.upload(path: bookfilepath + bookfilename, mode: .overwrite, input: data)
+            .response { response, error in
+                if let response = response {
+                    //print(response)
+                    self.uploadState = "success"
+                    self.uploadSemaphore.signal()
+                } else if let error = error {
+                    print(error)
+                    self.uploadState = "アップロード失敗"
+                    self.uploadSemaphore.signal()
+                }
+            }
+            .progress { progressData in
+                print(progressData)
+            }
+    }
+    
     
     //jsonファイル書き込み
     func save(_ bookdata: inout [Bookdata])->String{

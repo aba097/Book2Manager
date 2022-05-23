@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "E1A2618E-0C61-4B43-B437-08EA7B3E8755"
-   type = "1"
+   uuid = "061781BB-7221-4169-A360-4982E156BE09"
+   type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "86614935-CE12-49DC-BDA6-D4C3F4A883E7"
-            shouldBeEnabled = "No"
+            uuid = "5E7D5F61-062A-4065-8452-E1D8B4B2E199"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Book2Manager/Model/Delete/BookDataModel.swift"
+            filePath = "Book2Manager/Model/Delete/DeleteModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
-            landmarkName = "save(_:)"
-            landmarkType = "7">
+            startingLineNumber = "3"
+            endingLineNumber = "3"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
