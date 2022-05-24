@@ -123,7 +123,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     //layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: self.view.bounds.width, height: 263)
+        return CGSize(width: self.view.bounds.width, height: 308)
     }
     
     //セルの内容
@@ -147,51 +147,44 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         //comment
         cell.CommentTextView.text = bookdata.comments[bookdata.currentids[indexPath.row]]
         
-        cell.tag = indexPath.row
-        
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
-        longPressGesture.delegate = self
-        cell.addGestureRecognizer(longPressGesture)
+        cell.vc = self
+        cell.DeleteButton.tag = indexPath.row
         
         return cell
     }
     
-    //cell Long Press イベント 本の削除
-    @objc func longPress(_ sender: UILongPressGestureRecognizer){
-      
+    func DeleteAction(_ sender: UIButton) {
         //長押し時
-        if sender.state == .began {
             //削除します---no---end!
             //       |---yes---本当に削除しますか---no---end!
             //                              |---yes---deleteAction
             
-            let alert: UIAlertController = UIAlertController(title: "削除します", message:  "", preferredStyle:  UIAlertController.Style.alert)
+        let alert: UIAlertController = UIAlertController(title: "削除します", message:  "", preferredStyle:  UIAlertController.Style.alert)
+        
+        let deleteaction: UIAlertAction = UIAlertAction(title: "Yes", style: .default, handler:{
+            (action: UIAlertAction!) -> Void in
             
-            let deleteaction: UIAlertAction = UIAlertAction(title: "Yes", style: .default, handler:{
+            let configalert: UIAlertController = UIAlertController(title: "本当に削除してもいいですか", message:  "", preferredStyle:  UIAlertController.Style.alert)
+            
+            let yesaction: UIAlertAction = UIAlertAction(title: "Yes", style: .default, handler:{
+                
                 (action: UIAlertAction!) -> Void in
                 
-                let configalert: UIAlertController = UIAlertController(title: "本当に削除してもいいですか", message:  "", preferredStyle:  UIAlertController.Style.alert)
-                
-                let yesaction: UIAlertAction = UIAlertAction(title: "Yes", style: .default, handler:{
-                    
-                    (action: UIAlertAction!) -> Void in
-                    
-                    //削除
-                    self.delete(sender.view!.tag as Int)
-                })
-                
-                configalert.addAction(yesaction)
-                configalert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
-                    
-                self.present(configalert, animated: true, completion: nil)
-                
+                //削除
+                self.delete(sender.tag as Int)
             })
             
-            alert.addAction(deleteaction)
-            alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+            configalert.addAction(yesaction)
+            configalert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
                 
-            self.present(alert, animated: true, completion: nil)
-        }
+            self.present(configalert, animated: true, completion: nil)
+            
+        })
+        
+        alert.addAction(deleteaction)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+            
+        self.present(alert, animated: true, completion: nil)
     }
     
     

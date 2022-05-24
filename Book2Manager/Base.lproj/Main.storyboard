@@ -190,17 +190,17 @@
                                 <rect key="frame" x="0.0" y="314" width="414" height="499"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nuI-06-EKd">
-                                    <size key="itemSize" width="395" height="276"/>
+                                    <size key="itemSize" width="395" height="308"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="4hu-rG-RUu" customClass="CollectionViewCell" customModule="Book2Manager" customModuleProvider="target">
-                                        <rect key="frame" x="9.5" y="0.0" width="395" height="276"/>
+                                        <rect key="frame" x="9.5" y="0.0" width="395" height="308"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Y2u-SZ-TAv">
-                                            <rect key="frame" x="0.0" y="0.0" width="395" height="276"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="395" height="308"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ErS-b0-uWe">
@@ -244,6 +244,15 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2m-j9-xzV">
+                                                    <rect key="frame" x="147.5" y="259" width="100" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="9uj-PH-uAH"/>
+                                                        <constraint firstAttribute="width" constant="100" id="fOb-oC-NBE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                    <state key="normal" title="Delete"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Ot6-A2-Uwl" secondAttribute="trailing" id="3CA-io-xJq"/>
@@ -251,8 +260,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="mVf-93-lF9" secondAttribute="trailing" id="BnT-UB-5OL"/>
                                                 <constraint firstItem="mVf-93-lF9" firstAttribute="leading" secondItem="Y2u-SZ-TAv" secondAttribute="leading" id="GeA-i9-IuI"/>
                                                 <constraint firstItem="vfg-rM-G7i" firstAttribute="top" secondItem="ErS-b0-uWe" secondAttribute="bottom" constant="3" id="Hsf-NK-lIu"/>
+                                                <constraint firstItem="V2m-j9-xzV" firstAttribute="top" secondItem="mVf-93-lF9" secondAttribute="bottom" constant="5" id="K4w-gZ-oCC"/>
                                                 <constraint firstAttribute="trailing" secondItem="vfg-rM-G7i" secondAttribute="trailing" id="LVF-ID-Um9"/>
                                                 <constraint firstItem="mVf-93-lF9" firstAttribute="top" secondItem="Ot6-A2-Uwl" secondAttribute="bottom" constant="3" id="ROG-2W-7Wk"/>
+                                                <constraint firstItem="V2m-j9-xzV" firstAttribute="centerX" secondItem="Y2u-SZ-TAv" secondAttribute="centerX" id="RYa-3O-zFs"/>
                                                 <constraint firstItem="vfg-rM-G7i" firstAttribute="leading" secondItem="Y2u-SZ-TAv" secondAttribute="leading" id="TuY-Z9-Msb"/>
                                                 <constraint firstAttribute="trailing" secondItem="ErS-b0-uWe" secondAttribute="trailing" id="hYn-YN-i0j"/>
                                                 <constraint firstItem="ErS-b0-uWe" firstAttribute="leading" secondItem="Y2u-SZ-TAv" secondAttribute="leading" id="mOA-F5-RjW"/>
@@ -260,10 +271,11 @@
                                                 <constraint firstItem="Ot6-A2-Uwl" firstAttribute="top" secondItem="vfg-rM-G7i" secondAttribute="bottom" constant="3" id="uEz-qB-n6j"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="395" height="276"/>
+                                        <size key="customSize" width="395" height="308"/>
                                         <connections>
                                             <outlet property="AuthorTextView" destination="vfg-rM-G7i" id="WAD-f1-8vR"/>
                                             <outlet property="CommentTextView" destination="mVf-93-lF9" id="NEg-N6-SlC"/>
+                                            <outlet property="DeleteButton" destination="V2m-j9-xzV" id="i2w-sm-FOK"/>
                                             <outlet property="PublisherTextView" destination="Ot6-A2-Uwl" id="N71-3E-TUB"/>
                                             <outlet property="TitleTextView" destination="ErS-b0-uWe" id="Mh9-u6-kU9"/>
                                         </connections>
