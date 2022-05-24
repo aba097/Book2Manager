@@ -148,7 +148,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         cell.CommentTextView.text = bookdata.comments[bookdata.currentids[indexPath.row]]
         
         cell.vc = self
-        cell.DeleteButton.tag = indexPath.row
+        cell.DeleteButton.tag = bookdata.currentids[indexPath.row]
         
         return cell
     }
