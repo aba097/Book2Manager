@@ -27,29 +27,6 @@ class DeleteModel{
     
     }
     
-    func delete(_ idx: Int) -> String {
-        
-        //json読み込み
-        var result = bookdata.bookLoad()
-        if result != "success" {
-            return result
-        }
-        
-        //json削除
-        result = bookdata.delete(idx)
-        if result != "success" {
-            return result
-        }
-        /*
-        //ファイル読み込み
-        result = refresh()
-        if result != "success" {
-            return result
-        }
-        */
-        return "success"
-        
-    }
     //ここにfileloadしてもいいかも
     @objc func refresh(){
         

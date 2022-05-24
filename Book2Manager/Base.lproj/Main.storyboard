@@ -203,15 +203,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="395" height="276"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LWS-Af-IfB">
-                                                    <rect key="frame" x="5" y="5" width="120" height="160"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="120" id="NAf-VV-LWS"/>
-                                                        <constraint firstAttribute="height" constant="160" id="Udf-k8-ORa"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ErS-b0-uWe">
-                                                    <rect key="frame" x="128" y="5" width="267" height="60"/>
+                                                    <rect key="frame" x="0.0" y="5" width="395" height="60"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Bet-h7-g8m"/>
@@ -222,7 +215,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Author" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vfg-rM-G7i">
-                                                    <rect key="frame" x="130" y="68" width="265" height="40"/>
+                                                    <rect key="frame" x="0.0" y="68" width="395" height="40"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="tfv-rp-LvE"/>
@@ -232,7 +225,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Publisher" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ot6-A2-Uwl">
-                                                    <rect key="frame" x="130" y="111" width="265" height="40"/>
+                                                    <rect key="frame" x="0.0" y="111" width="395" height="40"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="0Hz-3E-gAV"/>
@@ -242,7 +235,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mVf-93-lF9">
-                                                    <rect key="frame" x="0.0" y="168" width="395" height="100"/>
+                                                    <rect key="frame" x="0.0" y="154" width="395" height="100"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="Esk-wW-WDp"/>
@@ -257,23 +250,20 @@
                                                 <constraint firstItem="ErS-b0-uWe" firstAttribute="top" secondItem="Y2u-SZ-TAv" secondAttribute="top" constant="5" id="6hb-zD-DhJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="mVf-93-lF9" secondAttribute="trailing" id="BnT-UB-5OL"/>
                                                 <constraint firstItem="mVf-93-lF9" firstAttribute="leading" secondItem="Y2u-SZ-TAv" secondAttribute="leading" id="GeA-i9-IuI"/>
-                                                <constraint firstItem="Ot6-A2-Uwl" firstAttribute="leading" secondItem="LWS-Af-IfB" secondAttribute="trailing" constant="5" id="Hed-x0-va6"/>
                                                 <constraint firstItem="vfg-rM-G7i" firstAttribute="top" secondItem="ErS-b0-uWe" secondAttribute="bottom" constant="3" id="Hsf-NK-lIu"/>
                                                 <constraint firstAttribute="trailing" secondItem="vfg-rM-G7i" secondAttribute="trailing" id="LVF-ID-Um9"/>
-                                                <constraint firstItem="mVf-93-lF9" firstAttribute="top" secondItem="LWS-Af-IfB" secondAttribute="bottom" constant="3" id="Lys-ms-Vmf"/>
-                                                <constraint firstItem="ErS-b0-uWe" firstAttribute="leading" secondItem="LWS-Af-IfB" secondAttribute="trailing" constant="3" id="Y7e-Eh-oNZ"/>
-                                                <constraint firstItem="vfg-rM-G7i" firstAttribute="leading" secondItem="LWS-Af-IfB" secondAttribute="trailing" constant="5" id="Zhv-mc-XsR"/>
+                                                <constraint firstItem="mVf-93-lF9" firstAttribute="top" secondItem="Ot6-A2-Uwl" secondAttribute="bottom" constant="3" id="ROG-2W-7Wk"/>
+                                                <constraint firstItem="vfg-rM-G7i" firstAttribute="leading" secondItem="Y2u-SZ-TAv" secondAttribute="leading" id="TuY-Z9-Msb"/>
                                                 <constraint firstAttribute="trailing" secondItem="ErS-b0-uWe" secondAttribute="trailing" id="hYn-YN-i0j"/>
-                                                <constraint firstItem="LWS-Af-IfB" firstAttribute="leading" secondItem="Y2u-SZ-TAv" secondAttribute="leading" constant="5" id="oHa-zp-87K"/>
+                                                <constraint firstItem="ErS-b0-uWe" firstAttribute="leading" secondItem="Y2u-SZ-TAv" secondAttribute="leading" id="mOA-F5-RjW"/>
+                                                <constraint firstItem="Ot6-A2-Uwl" firstAttribute="leading" secondItem="Y2u-SZ-TAv" secondAttribute="leading" id="sWp-Im-erp"/>
                                                 <constraint firstItem="Ot6-A2-Uwl" firstAttribute="top" secondItem="vfg-rM-G7i" secondAttribute="bottom" constant="3" id="uEz-qB-n6j"/>
-                                                <constraint firstItem="LWS-Af-IfB" firstAttribute="top" secondItem="Y2u-SZ-TAv" secondAttribute="top" constant="5" id="wNC-rY-oE0"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="395" height="276"/>
                                         <connections>
                                             <outlet property="AuthorTextView" destination="vfg-rM-G7i" id="WAD-f1-8vR"/>
                                             <outlet property="CommentTextView" destination="mVf-93-lF9" id="NEg-N6-SlC"/>
-                                            <outlet property="ImageView" destination="LWS-Af-IfB" id="D4p-g4-3Gm"/>
                                             <outlet property="PublisherTextView" destination="Ot6-A2-Uwl" id="N71-3E-TUB"/>
                                             <outlet property="TitleTextView" destination="ErS-b0-uWe" id="Mh9-u6-kU9"/>
                                         </connections>

@@ -14,9 +14,6 @@ class BookDataModel{
     let bookfilename = "bookdata.json"
     let bookfilepath = "/test/path/"
     
-    let userfilename = "user.txt"
-    let userfilepath = "/test/path/"
-    
     //upload
     let uploadSemaphore = DispatchSemaphore(value: 0)
     var uploadState = ""
@@ -36,7 +33,6 @@ class BookDataModel{
         var author: String //本の著者
         var publisher: String //本の出版社
         var comment: String //本のコメント
-        var image: String //本のURL
         var state : String //本の貸し借り状態
     }
     
@@ -52,116 +48,8 @@ class BookDataModel{
     var authors:[String] = []
     var publishers:[String] = []
     var state:[String] = [] //"":return username:borrow
-    var images:[String] = [] //image list "":notexist url:exist
     var comments:[String] = []
-    var users:[String] = ["user0", "user1", "user2", "user3", "user4", "use5", "user6", "user7", "user8", "user9", "user10", "user11", "user12", "user13", "user14", "user15"]
-    
-    /*==================user====================*/
-    //user.txtが存在するか確認
-    func userExist(){
-        if DropboxClientsManager.authorizedClient == nil {
-            existState = "認証してください"
-            existSemaphore.signal()
-            return
-        }
-        
-        let client = DropboxClientsManager.authorizedClient!
-        //ファイル一覧を取得
-        client.files.listFolder(path: userfilepath).response { response, error in
-            if let response = response {
-                var flag = false
-                for entry in response.entries {
-                    //print(entry.name) ファイル一覧
-                    if entry.name == self.userfilename {
-                        self.existState = "doDownload"
-                        flag = true
-                    }
-                }
-                if !flag { //user.txtが存在しない
-                    self.existState = "notExist"
-                }
-                self.existSemaphore.signal()
-            } else if let error = error {
-                print(error)
-                self.existState = "ファイル一覧取得失敗"
-                self.existSemaphore.signal()
-            }
-        }
-    }
-    
-    //dropboxからダウンロード
-    func userDownload(){
-        if DropboxClientsManager.authorizedClient == nil {
-            downloadState = "認証してください"
-            downloadSemaphore.signal()
-            return
-        }
-        
-        let client = DropboxClientsManager.authorizedClient!
-        
-        // Download to Data
-        client.files.download(path: userfilepath + userfilename)
-            .response { response, error in
-                if let response = response {
-                    
-                    let fileContents = response.1
-                    let text = String(data: fileContents, encoding: .utf8)
-                    
-                    //usersに追加
-                    self.users = text!.components(separatedBy: "\n").filter{!$0.isEmpty}
-                    
-                    self.downloadState = "success"
-                    self.downloadSemaphore.signal()
-                } else if let error = error {
-                    print(error)
-                    self.downloadState = "ダウンロード失敗"
-                    self.downloadSemaphore.signal()
-                }
-            }
-            .progress { progressData in
-                print(progressData)
-            }
-    }
-    
-    //user読み込み
-    func userLoad() -> String {
-        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return "フォルダURL取得エラー"
-        }
-        
-        //user.txtファイルがない場合は，usersを書き込み作成
-        if !FileManager.default.fileExists(atPath: userfilepath){
-            let fileURL = dirURL.appendingPathComponent(userfilename)
-            
-            FileManager.default.createFile(atPath: userfilepath, contents: nil, attributes: nil)
-    
-            var writetxt = users[0]
-            for i in 1 ..< users.count {
-                writetxt += "\n" + users[i]
-            }
-            do {
-                try writetxt.write(to: fileURL, atomically: false, encoding: .utf8)
-            } catch {
-                return "ファイル書き込みエラー"
-            }
-            
-        }else{
-        //user.txtが存在する場合はusersに読み込み
-            let fileURL = dirURL.appendingPathComponent(userfilename)
 
-            do {
-                let text = try String(contentsOf: fileURL)
-                users = text.components(separatedBy: "\n").filter{!$0.isEmpty}
-                
-            }catch {
-                return "ファイル読み込みエラー"
-            }
-        }
-        
-        return "success"
-
-    }
-    
     /*==================book===================*/
     //bookdata.jsonが存在するか確認
     func bookExist(){
@@ -281,7 +169,6 @@ class BookDataModel{
         publishers = []
         comments = []
         state = []
-        images = []
         
         for _ in 0 ..< ids[ids.count - 1] + 1 {
             titles.append("")
@@ -289,7 +176,6 @@ class BookDataModel{
             publishers.append("")
             comments.append("")
             state.append("")
-            images.append("")
         }
         
         for book in bookjson {
@@ -298,9 +184,6 @@ class BookDataModel{
             publishers[book.id] = book.publisher
             comments[book.id] = book.comment
             state[book.id] = book.state
-
-            images[book.id] = ""
-
         }
         
         return "success"
@@ -363,31 +246,6 @@ class BookDataModel{
             .progress { progressData in
                 print(progressData)
             }
-    }
-    
-    
-    //jsonファイル書き込み
-    func save(_ bookdata: inout [Bookdata])->String{
-        
-        guard let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return "フォルダURL取得エラー"
-        }
-
-        let fileURL = dirURL.appendingPathComponent(bookfilename)
-        
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        guard let jsonValue = try? encoder.encode(bookdata) else {
-            return "JSONエンコードエラー"
-        }
-         
-        do {
-            try jsonValue.write(to: fileURL)
-        } catch {
-            return "JSON書き込みエラー"
-        }
-        
-        return "success"
     }
     
     //本の表示画面の更新

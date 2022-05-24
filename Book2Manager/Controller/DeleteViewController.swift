@@ -134,15 +134,6 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
         
         let bookdata = deletemodel.bookdata
-        
-        
-        //image
-        if bookdata.images[bookdata.currentids[indexPath.row]] != "" {
-            cell.ImageView.image = UIImage(contentsOfFile: bookdata.images[bookdata.currentids[indexPath.row]])
-        }
-        else{
-            cell.ImageView.image = nil
-        }
     
         //title
         cell.TitleTextView.text = bookdata.titles[bookdata.currentids[indexPath.row]]
@@ -199,22 +190,6 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             alert.addAction(deleteaction)
             alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
                 
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func deleteAction(_ idx: Int){
-        //idxはcurrentidのid
-        let result = deletemodel.delete(idx)
-        
-        if result != "success" {
-            //alert
-            let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true, completion: nil)
-        }else{
-            let alert = UIAlertController(title: "success", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -282,7 +257,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                     }
                 }
             }else if self.deletemodel.bookdata.existState == "notExist" {
-                //defaultuserを用意する
+                //空のbookjsonを用意する
                 self.deletemodel.bookdata.bookjson = []
                 
                 DispatchQueue.main.sync {
