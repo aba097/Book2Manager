@@ -135,30 +135,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
     @IBAction func RegisterAction(_ sender: Any) {
-        var title = ""
-        var author = ""
-        var publisher = ""
-        var comment = ""
-        
-        if TitleTextField.text != nil && TitleTextField.text?.count != 0 {
-            title = TitleTextField.text!
-        }
-        
-        if AuthorTextField.text != nil && AuthorTextField.text?.count != 0{
-            author = AuthorTextField.text!
-        }
-        
-        if PublisherTextField.text != nil && PublisherTextField.text?.count != 0{
-            publisher = PublisherTextField.text!
-        }
-        
-        if CommentTextView.text != nil && CommentTextView?.text?.count != 0 {
-            comment = CommentTextView.text!
-        }
-        
         //登録
-        upload(title, author, publisher, comment)
-        
+        //ファイルの存在確認→ダウンロード→アップロードを行っている
+        exist()
     }
     
     
@@ -189,9 +168,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
        
     }
     
-  
-    func upload(_ title: String, _ author: String, _ publisher: String, _ comment: String){
-        
+    func exist(){
         //グルグル表示
         ActivityIndicatorView.startAnimating()
         
@@ -205,26 +182,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             
             if self.registermodel.existState == "doDownload" {
                 DispatchQueue.main.async {
-                    //ダウンロードし，bookdataに格納
-                    self.registermodel.download()
-                }
-                //ダウンロード終了後
-                self.registermodel.downloadSemaphore.wait()
-                
-                if self.registermodel.downloadState != "success" { //error
-                    DispatchQueue.main.sync {
-                        self.ActivityIndicatorView.stopAnimating()
-            
-                        let alert = UIAlertController(title: "error", message: self.registermodel.downloadState, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-
-                    return
+                    self.download()
                 }
             }else if self.registermodel.existState == "notExist" {
                 //空のbookdataを用意する
                 self.registermodel.bookdata = []
+                DispatchQueue.main.async {
+                    self.upload()
+                }
             }else { //error
                 DispatchQueue.main.sync {
                     self.ActivityIndicatorView.stopAnimating()
@@ -235,7 +200,58 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
                 }
                 return
             }
+        }
+    }
+    
+    func download(){
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                //ダウンロードし，bookdataに格納
+                self.registermodel.download()
+            }
+            //ダウンロード終了後
+            self.registermodel.downloadSemaphore.wait()
             
+            if self.registermodel.downloadState != "success" { //error
+                DispatchQueue.main.sync {
+                    self.ActivityIndicatorView.stopAnimating()
+        
+                    let alert = UIAlertController(title: "error", message: self.registermodel.downloadState, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }else{
+                DispatchQueue.main.sync {
+                    self.upload()
+                }
+            }
+        }
+    }
+    func upload(){
+        
+        var title = ""
+        var author = ""
+        var publisher = ""
+        var comment = ""
+        
+        if TitleTextField.text != nil && TitleTextField.text?.count != 0 {
+            title = TitleTextField.text!
+        }
+        
+        if AuthorTextField.text != nil && AuthorTextField.text?.count != 0{
+            author = AuthorTextField.text!
+        }
+        
+        if PublisherTextField.text != nil && PublisherTextField.text?.count != 0{
+            publisher = PublisherTextField.text!
+        }
+        
+        if CommentTextView.text != nil && CommentTextView?.text?.count != 0 {
+            comment = CommentTextView.text!
+        }
+        
+        
+        DispatchQueue.global(qos: .default).async {
             //アップロードする
             DispatchQueue.main.async {
                 //セマフォでデットロックしてしまうためMain Threadで実行する

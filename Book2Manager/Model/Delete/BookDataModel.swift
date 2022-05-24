@@ -194,7 +194,7 @@ class BookDataModel{
         //削除対象の本以外の構造体
         var newbookjson: [Bookdata] = []
         //idxはcurrentidのid idは本id
-        let id = currentids[idx]
+        let id = idx
         
         var existFlag = false
         for book in bookjson {

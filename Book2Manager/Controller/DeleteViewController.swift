@@ -111,7 +111,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // キーボードを閉じる
         view.endEditing(true)
-        load()
+        deletemodel.refresh()
     }
     
     /*-------------------UICollectionView-----------------------------------*/
@@ -153,12 +153,12 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return cell
     }
     
-    func DeleteAction(_ sender: UIButton) {
+    func deleteAction(_ sender: UIButton) {
         //長押し時
             //削除します---no---end!
             //       |---yes---本当に削除しますか---no---end!
             //                              |---yes---deleteAction
-            
+            print(sender.tag as Int)
         let alert: UIAlertController = UIAlertController(title: "削除します", message:  "", preferredStyle:  UIAlertController.Style.alert)
         
         let deleteaction: UIAlertAction = UIAlertAction(title: "Yes", style: .default, handler:{
@@ -215,7 +215,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     }
     
-    func load(){
+    func exist(){
         //グルグル表示
         ActivityIndicatorView.startAnimating()
         
@@ -228,35 +228,16 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             
             if self.deletemodel.bookdata.existState == "doDownload" {
                 DispatchQueue.main.async {
-                    //ダウンロードし，bookjsonに格納
-                    self.deletemodel.bookdata.bookDownload()
-                }
-                //ダウンロード終了後
-                self.deletemodel.bookdata.downloadSemaphore.wait()
-                
-                if self.deletemodel.bookdata.downloadState != "success" { //error
-                    DispatchQueue.main.sync {
-                        self.ActivityIndicatorView.stopAnimating()
-            
-                        let alert = UIAlertController(title: "error", message: self.deletemodel.bookdata.downloadState, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }else{ //ダウンロード成功
-                    DispatchQueue.main.sync {
-                        self.deletemodel.bookdata.setDiplayData(searchtext: self.SearchBar.text, searchtarget: self.searchpicker.getTarget(), sortcategorytarget: self.sortcategorypicker.getCategoryTarget(), sortordertarget: self.sortorderpicker.getOrderTarget())
-                        self.deletemodel.CollectionView.reloadData()
-                        self.ActivityIndicatorView.stopAnimating()
-                    }
+                    //本を読み込む
+                    self.load()
                 }
             }else if self.deletemodel.bookdata.existState == "notExist" {
                 //空のbookjsonを用意する
                 self.deletemodel.bookdata.bookjson = []
                 
                 DispatchQueue.main.sync {
-                    self.deletemodel.bookdata.setDiplayData(searchtext: self.SearchBar.text, searchtarget: self.searchpicker.getTarget(), sortcategorytarget: self.sortcategorypicker.getCategoryTarget(), sortordertarget: self.sortorderpicker.getOrderTarget())
-                    self.deletemodel.CollectionView.reloadData()
                     self.ActivityIndicatorView.stopAnimating()
+                    self.refresh()
                 }
                 
             }else { //error
@@ -269,6 +250,41 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 }
             }
         }
+    }
+    
+    func load(){
+        //グルグル表示
+        ActivityIndicatorView.startAnimating()
+        
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.sync {
+                //ダウンロードし，bookjsonに格納
+                self.deletemodel.bookdata.bookDownload()
+            }
+            //ダウンロード終了後
+            self.deletemodel.bookdata.downloadSemaphore.wait()
+            
+            if self.deletemodel.bookdata.downloadState != "success" { //error
+                DispatchQueue.main.sync {
+                    self.ActivityIndicatorView.stopAnimating()
+        
+                    let alert = UIAlertController(title: "error", message: self.deletemodel.bookdata.downloadState, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }else{ //ダウンロード成功
+                DispatchQueue.main.sync {
+                    self.ActivityIndicatorView.stopAnimating()
+                    self.refresh()
+                }
+            }
+        }
+    }
+    
+        
+    func refresh(){
+        deletemodel.bookdata.setDiplayData(searchtext: SearchBar.text, searchtarget: searchpicker.getTarget(), sortcategorytarget: sortcategorypicker.getCategoryTarget(), sortordertarget: sortorderpicker.getOrderTarget())
+        deletemodel.CollectionView.reloadData()
     }
     
     func delete(_ idx: Int){
@@ -305,35 +321,37 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 }else{
                     //削除成功したのでアップロード
                     DispatchQueue.main.async {
-                        //ファイルが存在するか確認
-                        self.deletemodel.bookdata.bookUpload()
-                    }
-                    self.deletemodel.bookdata.uploadSemaphore.wait()
-                    
-                    if self.deletemodel.bookdata.uploadState != "success" { //error
-                        DispatchQueue.main.sync {
-                            self.ActivityIndicatorView.stopAnimating()
-                
-                            let alert = UIAlertController(title: "error", message: self.deletemodel.bookdata.downloadState, preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                    }else{
-                        DispatchQueue.main.sync {
-                            
-                            self.deletemodel.bookdata.setDiplayData(searchtext: self.SearchBar.text, searchtarget: self.searchpicker.getTarget(), sortcategorytarget: self.sortcategorypicker.getCategoryTarget(), sortordertarget: self.sortorderpicker.getOrderTarget())
-                            self.deletemodel.CollectionView.reloadData()
-                            
-                            self.ActivityIndicatorView.stopAnimating()
-                            
-                            let alert = UIAlertController(title: "success", message: nil, preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(alert, animated: true, completion: nil)
-                        }
+                        self.upload()
                     }
                 }
             }
             
+        }
+    }
+    
+    func upload(){
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                //book.jsonのアップロード
+                self.deletemodel.bookdata.bookUpload()
+            }
+            self.deletemodel.bookdata.uploadSemaphore.wait()
+            
+            DispatchQueue.main.sync {
+                self.ActivityIndicatorView.stopAnimating()
+                
+                if self.deletemodel.bookdata.uploadState != "success" { //error
+                    let alert = UIAlertController(title: "error", message: self.deletemodel.bookdata.downloadState, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    let alert = UIAlertController(title: "success", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    self.deletemodel.refresh()
+                }
+            }
         }
     }
     

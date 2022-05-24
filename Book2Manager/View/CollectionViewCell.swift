@@ -27,7 +27,7 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     @objc func buttonEvent(_ sender: UIButton) {
-        vc.DeleteAction(sender)
+        vc.deleteAction(sender)
     }
     
 }

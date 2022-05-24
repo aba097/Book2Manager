@@ -30,8 +30,8 @@ class DeleteModel{
     //ここにfileloadしてもいいかも
     @objc func refresh(){
         
-        //ファイル読み込み
-        vc.load()
+        //ファイル読み込み exit-> load
+        vc.exist()
         
         CollectionView.refreshControl?.endRefreshing()
     }
