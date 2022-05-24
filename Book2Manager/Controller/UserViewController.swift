@@ -28,8 +28,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         TableView.isEditing = true
         
         dropboxmodel.userVc = self
-        
-        load()
+        //exist() -> load()
+        exist()
     }
     
     //=============tableview ========================
@@ -72,7 +72,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func SaveAction(_ sender: Any) {
-        save()
+        upload()
     }
     
     @IBAction func UpdateAction(_ sender: Any) {
@@ -106,7 +106,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
-    func load(){
+    func exist(){
         //グルグル表示
         UpdateActivityIndicatorView.startAnimating()
         
@@ -120,25 +120,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if self.usermodel.existState == "doDownload" {
                 DispatchQueue.main.async {
-                    //ダウンロードし，bookdataに格納
-                    self.usermodel.download()
-                }
-                //ダウンロード終了後
-                self.usermodel.downloadSemaphore.wait()
-                
-                if self.usermodel.downloadState != "success" { //error
-                    DispatchQueue.main.sync {
-                        self.UpdateActivityIndicatorView.stopAnimating()
-            
-                        let alert = UIAlertController(title: "error", message: self.usermodel.downloadState, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-                }else{
-                    DispatchQueue.main.sync {
-                        self.TableView.reloadData()
-                        self.UpdateActivityIndicatorView.stopAnimating()
-                    }
+                    //user.txt読み込み
+                    self.load()
                 }
             }else if self.usermodel.existState == "notExist" {
                 //defaultuserを用意する
@@ -160,11 +143,38 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
         }
-           
-        
     }
     
-    func save(){
+    func load(){
+        //グルグル表示
+        UpdateActivityIndicatorView.startAnimating()
+
+        DispatchQueue.global(qos: .default).async {
+            DispatchQueue.main.async {
+                //ダウンロードし，bookdataに格納
+                self.usermodel.download()
+            }
+            //ダウンロード終了後
+            self.usermodel.downloadSemaphore.wait()
+            
+            if self.usermodel.downloadState != "success" { //error
+                DispatchQueue.main.sync {
+                    self.UpdateActivityIndicatorView.stopAnimating()
+        
+                    let alert = UIAlertController(title: "error", message: self.usermodel.downloadState, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }else{
+                DispatchQueue.main.sync {
+                    self.TableView.reloadData()
+                    self.UpdateActivityIndicatorView.stopAnimating()
+                }
+            }
+        }
+    }
+    
+    func upload(){
         //グルグル表示
         SaveActivityIndicatorView.startAnimating()
         

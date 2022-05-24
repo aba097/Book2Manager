@@ -253,9 +253,6 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func load(){
-        //グルグル表示
-        ActivityIndicatorView.startAnimating()
-        
         DispatchQueue.global(qos: .default).async {
             DispatchQueue.main.sync {
                 //ダウンロードし，bookjsonに格納
