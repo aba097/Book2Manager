@@ -91,7 +91,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             //sginalは認証が終了後SceneDelegate.swiftで行われる
             self.dropboxmodel.authSemaphore.wait()
             //アラートの表示はメインスレッドで行う
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 if self.dropboxmodel.authState {
                     let alert = UIAlertController(title: "success", message: "認証成功", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -128,13 +128,13 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.usermodel.users = ["user0", "user1", "user2", "user3", "user4", "use5", "user6", "user7", "user8", "user9", "user10", "user11", "user12", "user13", "user14", "user15"]
                 
                 self.usermodel.useridx = [0, 1 ,2 ,3 ,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.TableView.reloadData()
                     self.UpdateActivityIndicatorView.stopAnimating()
                 }
                 
             }else { //error
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.UpdateActivityIndicatorView.stopAnimating()
                     
                     let alert = UIAlertController(title: "error", message: self.usermodel.downloadState, preferredStyle: .alert)
@@ -158,7 +158,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.usermodel.downloadSemaphore.wait()
             
             if self.usermodel.downloadState != "success" { //error
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.UpdateActivityIndicatorView.stopAnimating()
         
                     let alert = UIAlertController(title: "error", message: self.usermodel.downloadState, preferredStyle: .alert)
@@ -166,7 +166,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.present(alert, animated: true, completion: nil)
                 }
             }else{
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.TableView.reloadData()
                     self.UpdateActivityIndicatorView.stopAnimating()
                 }
@@ -186,7 +186,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.usermodel.uploadSemaphore.wait()
             
             //アラートの表示はメインスレッドで行う
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 //グルグル非表示
                 self.SaveActivityIndicatorView.stopAnimating()
                 

@@ -200,7 +200,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             //sginalは認証が終了後SceneDelegate.swiftで行われる
             self.dropboxmodel.authSemaphore.wait()
             //アラートの表示はメインスレッドで行う
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 if self.dropboxmodel.authState {
                     let alert = UIAlertController(title: "success", message: "認証成功", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -235,13 +235,13 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 //空のbookjsonを用意する
                 self.deletemodel.bookdata.bookjson = []
                 
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.ActivityIndicatorView.stopAnimating()
                     self.refresh()
                 }
                 
             }else { //error
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.ActivityIndicatorView.stopAnimating()
                     
                     let alert = UIAlertController(title: "error", message: self.deletemodel.bookdata.downloadState, preferredStyle: .alert)
@@ -254,7 +254,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     func load(){
         DispatchQueue.global(qos: .default).async {
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 //ダウンロードし，bookjsonに格納
                 self.deletemodel.bookdata.bookDownload()
             }
@@ -262,7 +262,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             self.deletemodel.bookdata.downloadSemaphore.wait()
             
             if self.deletemodel.bookdata.downloadState != "success" { //error
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.ActivityIndicatorView.stopAnimating()
         
                     let alert = UIAlertController(title: "error", message: self.deletemodel.bookdata.downloadState, preferredStyle: .alert)
@@ -270,7 +270,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                     self.present(alert, animated: true, completion: nil)
                 }
             }else{ //ダウンロード成功
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.ActivityIndicatorView.stopAnimating()
                     self.refresh()
                 }
@@ -297,7 +297,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             self.deletemodel.bookdata.downloadSemaphore.wait()
             
             if self.deletemodel.bookdata.downloadState != "success" { //error
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.ActivityIndicatorView.stopAnimating()
         
                     let alert = UIAlertController(title: "error", message: self.deletemodel.bookdata.downloadState, preferredStyle: .alert)
@@ -308,7 +308,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                  let result = self.deletemodel.bookdata.delete(idx)
                 
                 if result != "success" { //error
-                    DispatchQueue.main.sync {
+                    DispatchQueue.main.async {
                         self.ActivityIndicatorView.stopAnimating()
             
                         let alert = UIAlertController(title: "error", message: result, preferredStyle: .alert)
@@ -334,7 +334,7 @@ class DeleteViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             }
             self.deletemodel.bookdata.uploadSemaphore.wait()
             
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 self.ActivityIndicatorView.stopAnimating()
                 
                 if self.deletemodel.bookdata.uploadState != "success" { //error

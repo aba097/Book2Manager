@@ -153,7 +153,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             //sginalは認証が終了後SceneDelegate.swiftで行われる
             self.dropboxmodel.authSemaphore.wait()
             //アラートの表示はメインスレッドで行う
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 if self.dropboxmodel.authState {
                     let alert = UIAlertController(title: "success", message: "認証成功", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -191,7 +191,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
                     self.upload()
                 }
             }else { //error
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.ActivityIndicatorView.stopAnimating()
                     
                     let alert = UIAlertController(title: "error", message: self.registermodel.downloadState, preferredStyle: .alert)
@@ -213,7 +213,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             self.registermodel.downloadSemaphore.wait()
             
             if self.registermodel.downloadState != "success" { //error
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.ActivityIndicatorView.stopAnimating()
         
                     let alert = UIAlertController(title: "error", message: self.registermodel.downloadState, preferredStyle: .alert)
@@ -221,7 +221,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
                     self.present(alert, animated: true, completion: nil)
                 }
             }else{
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.upload()
                 }
             }
@@ -261,7 +261,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             self.registermodel.uploadSemaphore.wait()
             
             //アラートの表示はメインスレッドで行う
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 //グルグル非表示
                 self.ActivityIndicatorView.stopAnimating()
                 
