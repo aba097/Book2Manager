@@ -19,7 +19,6 @@ class Summary: Decodable {
     let title: String
     let publisher: String
     let author: String
-    let cover: String
 }
 
 class Onix: Decodable {

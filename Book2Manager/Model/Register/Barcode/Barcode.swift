@@ -16,7 +16,6 @@ class BarcodeModel: NSObject, AVCaptureMetadataOutputObjectsDelegate{
     weak var AuthorTextField: UITextField!
     weak var PublisherTextField: UITextField!
     weak var CommentTextView: UITextView!
-    weak var ImageView: UIImageView!
     weak var RegisterButton: UIButton!
     
     var isbnmanager = IsbnManager()
@@ -35,14 +34,13 @@ class BarcodeModel: NSObject, AVCaptureMetadataOutputObjectsDelegate{
         return output
     }()
     
-    func setup(_ captureview :UIView, _ title: UITextField, _ author: UITextField, _ publisher: UITextField, _ comment: UITextView, _ image: UIImageView, _ button: UIButton){
+    func setup(_ captureview :UIView, _ title: UITextField, _ author: UITextField, _ publisher: UITextField, _ comment: UITextView, _ button: UIButton){
         
         CaptureView = captureview
         TitleTextField = title
         AuthorTextField = author
         PublisherTextField = publisher
         CommentTextView = comment
-        ImageView = image
         RegisterButton = button
         
         
@@ -96,17 +94,7 @@ class BarcodeModel: NSObject, AVCaptureMetadataOutputObjectsDelegate{
         self.AuthorTextField.text = result.author
         self.PublisherTextField.text = result.publisher
         self.CommentTextView.text = result.comment
-        if result.url != "" {
-            let url = URL(string: result.url)
-            do {
-                let data = try Data(contentsOf: url!)
-                self.ImageView.image = UIImage(data: data)!
-            } catch let err {
-                print("Error : \(err.localizedDescription)")
-            }
-        }else{
-            self.ImageView.image = nil
-        }
+      
         //登録ボタンを押せるように
         self.RegisterButton.isEnabled = result.isEnable
         

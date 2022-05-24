@@ -35,7 +35,6 @@ class RegisterModel {
         var author: String //本の著者
         var publisher: String //本の出版社
         var comment: String //本のコメント
-        var image: String //画像名
         var state : String //本の貸し借り状態
     }
     
@@ -109,7 +108,7 @@ class RegisterModel {
     }
     
     //DropBoxにアップロード
-    func upload(_ title: String, _ author: String, _ publisher: String, _ comment: String, _ image: UIImageView) {
+    func upload(_ title: String, _ author: String, _ publisher: String, _ comment: String) {
         
         if DropboxClientsManager.authorizedClient == nil {
             uploadState = "認証してください"
@@ -126,28 +125,8 @@ class RegisterModel {
             newId = bookdata[bookdata.count - 1].id + 1
         }
         
-        var imageName = ""
-        //画像のアップロード
-        if image.image != nil {
-            imageName = String(newId) + ".jpeg"
-            let data = image.image?.jpegData(compressionQuality: 0.8)
-            
-            client.files.upload(path: filepath + imageName, mode: .overwrite, input: data!)
-                .response { response, error in
-                    if let response = response {
-                        //print(response)
-                        
-                    } else if let error = error {
-                       // print(error)
-                    }
-                }
-                .progress { progressData in
-                    print(progressData)
-                }
-        }
-        
         //追加
-        bookdata.append(Bookdata(id: newId, title: title, author: author, publisher: publisher, comment: comment, image: imageName, state: ""))
+        bookdata.append(Bookdata(id: newId, title: title, author: author, publisher: publisher, comment: comment, state: ""))
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted

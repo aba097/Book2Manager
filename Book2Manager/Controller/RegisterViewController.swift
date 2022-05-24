@@ -21,15 +21,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     
     @IBOutlet weak var IsbnTextField: UITextField!
     
-    @IBOutlet weak var ImageView: UIImageView!
-    
-    
     @IBOutlet weak var RegisterButton: UIButton!
     
     @IBOutlet weak var CaptureView: UIView!
-    
-    @IBOutlet weak var ScrollView: UIScrollView!
-    
+
     //グルグル
     @IBOutlet weak var ActivityIndicatorView: UIActivityIndicatorView!
     
@@ -56,12 +51,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         dropboxmodel.registerVc = self
 
         textViewSetup()
-        barcodemodel.setup(CaptureView, TitleTextField, AuthorTextField, PublisherTextField, CommentTextView, ImageView, RegisterButton)
-       
+        barcodemodel.setup(CaptureView, TitleTextField, AuthorTextField, PublisherTextField, CommentTextView, RegisterButton)
+
     }
     
     //=======textview===============
-    // textViewを閉じるためのボタンを生成
+    // textViewを閉じるためのキーボード上のボタンを生成
     func textViewSetup(){
         //ツールバー生成
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
@@ -116,52 +111,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         return true
     }
 
-    //=======image============
-    //画像アップロード時
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
-        ImageView.image = info[.originalImage] as? UIImage
-        //フォトライブラリと閉じる
-        picker.dismiss(animated: true, completion: nil)
-        
-    }
-    
-    //フォトライブラリのキャンセルボタンをクリック時
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        //フォトライブラリ閉じる
-        picker.dismiss(animated: true, completion: nil)
-
-    }
-    
-    @IBAction func ImageUploadAction(_ sender: Any) {
-        imagepicker = UIImagePickerController()
-        
-        //アラート生成
-        let alert: UIAlertController = UIAlertController(title: "選択してください", message:  "", preferredStyle:  UIAlertController.Style.alert)
-        
-        let cameraaction: UIAlertAction = UIAlertAction(title: "カメラを起動", style: .default, handler:{
-            (action: UIAlertAction!) -> Void in
-            self.imagepicker.sourceType = .camera
-            self.imagepicker.delegate = self
-            self.present(self.imagepicker, animated: true)
-        })
-        
-        let libraryaction: UIAlertAction = UIAlertAction(title: "フォトライブラリを起動", style: .default, handler:{
-            (action: UIAlertAction!) -> Void in
-            self.imagepicker.sourceType = .photoLibrary
-            self.imagepicker.delegate = self
-            self.present(self.imagepicker, animated: true)
-        })
-        
-        alert.addAction(cameraaction)
-        alert.addAction(libraryaction)
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
-        //alert表示
-        present(alert, animated: true, completion: nil)
-        
-    }
-    
-    
     @IBAction func BarcodeReadAction(_ sender: UIButton) {
         
         sender.isSelected = !sender.isSelected
@@ -207,7 +157,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
         }
         
         //登録
-        upload(title, author, publisher, comment, ImageView)
+        upload(title, author, publisher, comment)
         
     }
     
@@ -240,7 +190,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
     }
     
   
-    func upload(_ title: String, _ author: String, _ publisher: String, _ comment: String, _ image: UIImageView){
+    func upload(_ title: String, _ author: String, _ publisher: String, _ comment: String){
         
         //グルグル表示
         ActivityIndicatorView.startAnimating()
@@ -289,7 +239,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UIImagePick
             //アップロードする
             DispatchQueue.main.async {
                 //セマフォでデットロックしてしまうためMain Threadで実行する
-                self.registermodel.upload(title, author, publisher, comment, image)
+                self.registermodel.upload(title, author, publisher, comment)
             }
             //アップロード終了後
             self.registermodel.uploadSemaphore.wait()

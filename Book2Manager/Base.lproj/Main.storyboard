@@ -343,281 +343,6 @@
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="813.61607142857144"/>
         </scene>
-        <!--Register-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="RegisterViewController" customModule="Book2Manager" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blA-xv-1hz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1217"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfi-oB-Kk0">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiu-H1-X0h">
-                                                <rect key="frame" x="20" y="40" width="60" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="2w1-Le-U8U"/>
-                                                    <constraint firstAttribute="width" constant="60" id="pjT-mt-SlH"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2W2-df-tMc">
-                                                <rect key="frame" x="20" y="95" width="60" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="h70-cP-eJ5"/>
-                                                    <constraint firstAttribute="height" constant="20" id="sq7-SJ-U5I"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fc-O0-qgG">
-                                                <rect key="frame" x="20" y="150" width="60" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="4fU-E6-CuK"/>
-                                                    <constraint firstAttribute="width" constant="60" id="BRu-gI-jYJ"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cmt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1U-HR-8an">
-                                                <rect key="frame" x="20" y="205" width="60" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="Czk-Ov-La2"/>
-                                                    <constraint firstAttribute="width" constant="60" id="SkL-U3-I5U"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apK-rY-oe1">
-                                                <rect key="frame" x="85" y="32.5" width="309" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="Caz-eJ-ir5"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r9r-pl-vcg">
-                                                <rect key="frame" x="85" y="87.5" width="309" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="MCu-nQ-emm"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ArX-29-gyg">
-                                                <rect key="frame" x="85" y="142.5" width="309" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="gUA-SI-PlN"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1qu-4X-3Pe">
-                                                <rect key="frame" x="85" y="205" width="309" height="150"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="1pH-YH-PsZ"/>
-                                                </constraints>
-                                                <color key="textColor" systemColor="labelColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGk-wv-mgu">
-                                                <rect key="frame" x="122" y="555" width="170" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="5Wq-4c-e6c"/>
-                                                    <constraint firstAttribute="width" constant="170" id="vkD-RX-8ae"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <state key="normal" title="Upload Image"/>
-                                                <connections>
-                                                    <action selector="ImageUploadAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k7p-8s-aJM"/>
-                                                </connections>
-                                            </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AdY-Ng-M2j">
-                                                <rect key="frame" x="147" y="375" width="120" height="160"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="dub-fq-Cmn"/>
-                                                    <constraint firstAttribute="height" constant="160" id="wc7-A1-ct7"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISBN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sb-hb-8nb">
-                                                <rect key="frame" x="20" y="640" width="60" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="4UP-7R-VZ9"/>
-                                                    <constraint firstAttribute="width" constant="60" id="oih-77-C71"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oN5-V2-Z0b">
-                                                <rect key="frame" x="112" y="732.5" width="190" height="105"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="105" id="MPw-HK-XUi"/>
-                                                    <constraint firstAttribute="width" constant="190" id="nh4-dm-2f5"/>
-                                                </constraints>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PM1-Ht-fkL">
-                                                <rect key="frame" x="137" y="857.5" width="140" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="CHL-JF-g5z"/>
-                                                    <constraint firstAttribute="width" constant="140" id="t7U-y6-DdM"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <state key="normal" title="Read Barcode"/>
-                                                <connections>
-                                                    <action selector="BarcodeReadAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8zj-Ij-Pm1"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOj-be-wfR">
-                                                <rect key="frame" x="172" y="907.5" width="70" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="5h7-Qt-hFu"/>
-                                                    <constraint firstAttribute="height" constant="35" id="jm5-P0-HPO"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <state key="normal" title="Register"/>
-                                                <connections>
-                                                    <action selector="RegisterAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="24Q-zn-NG2"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qbk-Ke-ehD">
-                                                <rect key="frame" x="167" y="682.5" width="80" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="NgC-Jt-tDM"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="OQs-gV-lVc"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                                <state key="normal" title="Search"/>
-                                                <connections>
-                                                    <action selector="ISBNcodeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mbw-lD-Yic"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="umN-bb-2Mk">
-                                                <rect key="frame" x="85" y="632.5" width="309" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="jE6-Kj-yvA"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCp-9s-PRK">
-                                                <rect key="frame" x="182" y="962.5" width="50" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="85H-Eb-mqF"/>
-                                                    <constraint firstAttribute="width" constant="50" id="KNZ-nD-MGE"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
-                                                <state key="normal" title="AuthC"/>
-                                                <connections>
-                                                    <action selector="AuthenticationAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2pZ-FV-PJH"/>
-                                                </connections>
-                                            </button>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="6Yt-ff-sDi">
-                                                <rect key="frame" x="262" y="915" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="Q7b-I5-F96"/>
-                                                    <constraint firstAttribute="width" constant="20" id="UsG-F2-sN6"/>
-                                                </constraints>
-                                            </activityIndicatorView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="7Sb-hb-8nb" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="1fD-px-GiY"/>
-                                            <constraint firstItem="qbk-Ke-ehD" firstAttribute="top" secondItem="umN-bb-2Mk" secondAttribute="bottom" constant="15" id="32K-s3-8XO"/>
-                                            <constraint firstItem="eGk-wv-mgu" firstAttribute="top" secondItem="AdY-Ng-M2j" secondAttribute="bottom" constant="20" id="721-7K-iXV"/>
-                                            <constraint firstItem="6Yt-ff-sDi" firstAttribute="leading" secondItem="EOj-be-wfR" secondAttribute="trailing" constant="20" id="8mx-67-2Sf"/>
-                                            <constraint firstItem="EOj-be-wfR" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="92h-MG-nsY"/>
-                                            <constraint firstItem="EOj-be-wfR" firstAttribute="top" secondItem="PM1-Ht-fkL" secondAttribute="bottom" constant="20" id="9Dn-Sm-jKq"/>
-                                            <constraint firstItem="PM1-Ht-fkL" firstAttribute="top" secondItem="oN5-V2-Z0b" secondAttribute="bottom" constant="20" id="9gv-JF-bq1"/>
-                                            <constraint firstItem="qbk-Ke-ehD" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="Eda-oD-8My"/>
-                                            <constraint firstItem="apK-rY-oe1" firstAttribute="leading" secondItem="oiu-H1-X0h" secondAttribute="trailing" constant="5" id="FlW-rI-do0"/>
-                                            <constraint firstItem="1qu-4X-3Pe" firstAttribute="leading" secondItem="h1U-HR-8an" secondAttribute="trailing" constant="5" id="H3D-5I-azP"/>
-                                            <constraint firstItem="oiu-H1-X0h" firstAttribute="top" secondItem="rfi-oB-Kk0" secondAttribute="top" constant="40" id="I92-eN-TDY"/>
-                                            <constraint firstAttribute="trailing" secondItem="r9r-pl-vcg" secondAttribute="trailing" constant="20" id="IZ4-FQ-KAF"/>
-                                            <constraint firstItem="oN5-V2-Z0b" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="JzD-0c-KNF"/>
-                                            <constraint firstItem="umN-bb-2Mk" firstAttribute="leading" secondItem="7Sb-hb-8nb" secondAttribute="trailing" constant="5" id="LeP-S1-fRv"/>
-                                            <constraint firstItem="oiu-H1-X0h" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="M2E-r5-DjT"/>
-                                            <constraint firstItem="ArX-29-gyg" firstAttribute="centerY" secondItem="2fc-O0-qgG" secondAttribute="centerY" id="Nak-Xb-oPH"/>
-                                            <constraint firstItem="r9r-pl-vcg" firstAttribute="leading" secondItem="2W2-df-tMc" secondAttribute="trailing" constant="5" id="ORa-hG-RRL"/>
-                                            <constraint firstAttribute="trailing" secondItem="apK-rY-oe1" secondAttribute="trailing" constant="20" id="Pgp-X1-yJk"/>
-                                            <constraint firstItem="2W2-df-tMc" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="QPC-kZ-XCs"/>
-                                            <constraint firstItem="eGk-wv-mgu" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="T3c-lz-pxN"/>
-                                            <constraint firstItem="h1U-HR-8an" firstAttribute="top" secondItem="2fc-O0-qgG" secondAttribute="bottom" constant="35" id="TCb-i4-DBG"/>
-                                            <constraint firstAttribute="height" constant="1000" id="WXu-Un-UZR"/>
-                                            <constraint firstItem="umN-bb-2Mk" firstAttribute="centerY" secondItem="7Sb-hb-8nb" secondAttribute="centerY" id="Wzj-ro-Rrx"/>
-                                            <constraint firstAttribute="trailing" secondItem="1qu-4X-3Pe" secondAttribute="trailing" constant="20" id="Xp3-Y6-uli"/>
-                                            <constraint firstItem="2W2-df-tMc" firstAttribute="top" secondItem="oiu-H1-X0h" secondAttribute="bottom" constant="35" id="Y3r-83-u4j"/>
-                                            <constraint firstItem="PM1-Ht-fkL" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="axD-7Y-MA6"/>
-                                            <constraint firstItem="apK-rY-oe1" firstAttribute="centerY" secondItem="oiu-H1-X0h" secondAttribute="centerY" id="blz-H7-43n"/>
-                                            <constraint firstItem="oN5-V2-Z0b" firstAttribute="top" secondItem="qbk-Ke-ehD" secondAttribute="bottom" constant="20" id="d22-ds-q3L"/>
-                                            <constraint firstAttribute="trailing" secondItem="ArX-29-gyg" secondAttribute="trailing" constant="20" id="eGn-Ts-5HS"/>
-                                            <constraint firstItem="AdY-Ng-M2j" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="ecy-B9-JRM"/>
-                                            <constraint firstItem="h1U-HR-8an" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="fDG-FZ-JnU"/>
-                                            <constraint firstItem="ArX-29-gyg" firstAttribute="leading" secondItem="2fc-O0-qgG" secondAttribute="trailing" constant="5" id="gK8-P6-MqZ"/>
-                                            <constraint firstItem="1qu-4X-3Pe" firstAttribute="top" secondItem="h1U-HR-8an" secondAttribute="top" id="jCk-jv-epf"/>
-                                            <constraint firstItem="2fc-O0-qgG" firstAttribute="leading" secondItem="rfi-oB-Kk0" secondAttribute="leading" constant="20" id="lVP-MH-BDK"/>
-                                            <constraint firstItem="r9r-pl-vcg" firstAttribute="centerY" secondItem="2W2-df-tMc" secondAttribute="centerY" id="lsZ-4e-0wc"/>
-                                            <constraint firstItem="7Sb-hb-8nb" firstAttribute="top" secondItem="h1U-HR-8an" secondAttribute="bottom" constant="415" id="mXk-sg-eq1"/>
-                                            <constraint firstItem="VCp-9s-PRK" firstAttribute="top" secondItem="EOj-be-wfR" secondAttribute="bottom" constant="20" id="nhJ-DL-BYF"/>
-                                            <constraint firstItem="VCp-9s-PRK" firstAttribute="centerX" secondItem="rfi-oB-Kk0" secondAttribute="centerX" id="ruY-q8-MxS"/>
-                                            <constraint firstItem="6Yt-ff-sDi" firstAttribute="centerY" secondItem="EOj-be-wfR" secondAttribute="centerY" id="tpT-Lt-Wa4"/>
-                                            <constraint firstItem="2fc-O0-qgG" firstAttribute="top" secondItem="2W2-df-tMc" secondAttribute="bottom" constant="35" id="wDe-2L-TtE"/>
-                                            <constraint firstItem="AdY-Ng-M2j" firstAttribute="top" secondItem="1qu-4X-3Pe" secondAttribute="bottom" constant="20" id="wi7-ee-ldZ"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="900" id="xI2-if-FnU"/>
-                                            <constraint firstAttribute="trailing" secondItem="umN-bb-2Mk" secondAttribute="trailing" constant="20" id="yIe-wW-AGS"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="rfi-oB-Kk0" firstAttribute="trailing" secondItem="tcZ-us-3lb" secondAttribute="trailing" id="OEk-gM-a5c"/>
-                                    <constraint firstItem="rfi-oB-Kk0" firstAttribute="leading" secondItem="tcZ-us-3lb" secondAttribute="leading" id="QlP-e7-VoM"/>
-                                    <constraint firstItem="rfi-oB-Kk0" firstAttribute="width" secondItem="rfr-Va-LPc" secondAttribute="width" id="X5i-sN-zD9"/>
-                                    <constraint firstItem="rfi-oB-Kk0" firstAttribute="bottom" secondItem="tcZ-us-3lb" secondAttribute="bottom" id="ZUv-pZ-LUu"/>
-                                    <constraint firstItem="rfi-oB-Kk0" firstAttribute="top" secondItem="tcZ-us-3lb" secondAttribute="top" id="fxF-ez-Ghw"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="tcZ-us-3lb"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="rfr-Va-LPc"/>
-                            </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="blA-xv-1hz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BNS-WA-k4E"/>
-                            <constraint firstItem="blA-xv-1hz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MsK-Io-IFK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="blA-xv-1hz" secondAttribute="bottom" id="v6Q-Jq-Rfp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="blA-xv-1hz" secondAttribute="trailing" id="yjr-F7-H3T"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Register" image="gearshape" catalog="system" id="87t-BT-1TJ"/>
-                    <size key="freeformSize" width="414" height="1300"/>
-                    <connections>
-                        <outlet property="ActivityIndicatorView" destination="6Yt-ff-sDi" id="Lfv-Nm-N4H"/>
-                        <outlet property="AuthorTextField" destination="r9r-pl-vcg" id="m16-aD-r5u"/>
-                        <outlet property="CaptureView" destination="oN5-V2-Z0b" id="hcp-1e-2F4"/>
-                        <outlet property="CommentTextView" destination="1qu-4X-3Pe" id="xcj-ml-D0D"/>
-                        <outlet property="ImageView" destination="AdY-Ng-M2j" id="9BF-Dc-fyX"/>
-                        <outlet property="IsbnTextField" destination="umN-bb-2Mk" id="pdw-fy-J7M"/>
-                        <outlet property="PublisherTextField" destination="ArX-29-gyg" id="mgd-OL-CIc"/>
-                        <outlet property="RegisterButton" destination="EOj-be-wfR" id="I0c-nR-ULz"/>
-                        <outlet property="ScrollView" destination="blA-xv-1hz" id="teW-yN-4zd"/>
-                        <outlet property="TitleTextField" destination="apK-rY-oe1" id="ykd-BS-X0E"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="77.678571428571431"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Tjj-hz-WDU">
             <objects>
@@ -629,7 +354,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="rbj-s9-nwx"/>
+                        <segue destination="LRL-ys-NGv" kind="relationship" relationship="viewControllers" id="UC2-gr-7Y2"/>
                         <segue destination="YYN-Vm-74D" kind="relationship" relationship="viewControllers" id="tWf-JH-0DM"/>
                         <segue destination="qD1-Pk-4ja" kind="relationship" relationship="viewControllers" id="sB0-A4-ghx"/>
                     </connections>
@@ -637,6 +362,256 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elt-he-ecd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="77.678571428571431"/>
+        </scene>
+        <!--Register-->
+        <scene sceneID="m8v-yZ-Cw8">
+            <objects>
+                <viewController id="LRL-ys-NGv" customClass="RegisterViewController" customModule="Book2Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pDv-ma-wFc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWE-xK-qL8">
+                                <rect key="frame" x="0.0" y="54" width="414" height="769"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWH-JJ-Dfk">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2w-ax-W2f">
+                                                <rect key="frame" x="20" y="20" width="60" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="0m7-TJ-4jM"/>
+                                                    <constraint firstAttribute="height" constant="20" id="ExU-Ie-gAF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGV-Pa-6tb">
+                                                <rect key="frame" x="85" y="12.5" width="319" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="WxW-lk-c8i"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBW-Dw-Bv4">
+                                                <rect key="frame" x="20" y="75" width="60" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="6jQ-AN-mve"/>
+                                                    <constraint firstAttribute="width" constant="60" id="eLh-m6-mz1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CNh-d0-222">
+                                                <rect key="frame" x="85" y="67.5" width="319" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="fue-dT-EhN"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHP-fL-Tcf">
+                                                <rect key="frame" x="20" y="130" width="60" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="69a-LZ-q7H"/>
+                                                    <constraint firstAttribute="width" constant="60" id="nZ3-DY-i38"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OEZ-5C-GNd">
+                                                <rect key="frame" x="85" y="122.5" width="319" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="7x7-35-Qcs"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cmt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEF-en-8U6">
+                                                <rect key="frame" x="20" y="185" width="60" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="9cl-zB-mmd"/>
+                                                    <constraint firstAttribute="width" constant="60" id="SK7-Vp-3M1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Uz0-Ux-1jw">
+                                                <rect key="frame" x="85" y="185" width="319" height="150"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="150" id="xWl-AM-6XV"/>
+                                                </constraints>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISBN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iB7-fR-sXK">
+                                                <rect key="frame" x="20" y="382.5" width="60" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="aSK-tJ-oRD"/>
+                                                    <constraint firstAttribute="width" constant="60" id="mM6-DI-J0M"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="blE-mA-lCm">
+                                                <rect key="frame" x="85" y="375" width="319" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="bmU-0D-YQi"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpo-nG-45t">
+                                                <rect key="frame" x="167" y="420" width="80" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="h3E-gD-FcU"/>
+                                                    <constraint firstAttribute="width" constant="80" id="iJW-9M-4zF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                <state key="normal" title="Search"/>
+                                                <connections>
+                                                    <action selector="ISBNcodeAction:" destination="LRL-ys-NGv" eventType="touchUpInside" id="ikK-Nv-bhU"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wej-0o-uRW">
+                                                <rect key="frame" x="112" y="480" width="190" height="105"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="105" id="6qe-Rg-cG8"/>
+                                                    <constraint firstAttribute="width" constant="190" id="A1g-3H-y47"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGh-yo-D4e">
+                                                <rect key="frame" x="147" y="595" width="120" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="8nz-pu-SkL"/>
+                                                    <constraint firstAttribute="height" constant="30" id="TdG-RL-SWN"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                <state key="normal" title="Read Barcode"/>
+                                                <connections>
+                                                    <action selector="BarcodeReadAction:" destination="LRL-ys-NGv" eventType="touchUpInside" id="FRJ-G6-KVR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvq-kX-8U4">
+                                                <rect key="frame" x="172" y="665" width="70" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="jFE-ev-gxI"/>
+                                                    <constraint firstAttribute="width" constant="70" id="vSb-MG-oYi"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                                <state key="normal" title="Register"/>
+                                                <connections>
+                                                    <action selector="RegisterAction:" destination="LRL-ys-NGv" eventType="touchUpInside" id="jpa-Mt-Ooa"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ox8-hG-85Z">
+                                                <rect key="frame" x="20" y="667.5" width="50" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="FKz-FX-yL2"/>
+                                                    <constraint firstAttribute="height" constant="30" id="UHi-Sm-G5R"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                                                <state key="normal" title="AuthC"/>
+                                                <connections>
+                                                    <action selector="AuthenticationAction:" destination="LRL-ys-NGv" eventType="touchUpInside" id="nge-7Z-fc6"/>
+                                                </connections>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="gKM-pw-uz5">
+                                                <rect key="frame" x="262" y="672.5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="eX9-sg-Fyh"/>
+                                                    <constraint firstAttribute="height" constant="20" id="nk7-o4-oHL"/>
+                                                </constraints>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="gKM-pw-uz5" firstAttribute="centerY" secondItem="zvq-kX-8U4" secondAttribute="centerY" id="0ri-CH-hh7"/>
+                                            <constraint firstItem="hpo-nG-45t" firstAttribute="centerX" secondItem="VWH-JJ-Dfk" secondAttribute="centerX" id="2My-Yz-cnG"/>
+                                            <constraint firstAttribute="trailing" secondItem="OEZ-5C-GNd" secondAttribute="trailing" constant="10" id="3Fa-iH-acl"/>
+                                            <constraint firstItem="E2w-ax-W2f" firstAttribute="leading" secondItem="VWH-JJ-Dfk" secondAttribute="leading" constant="20" id="3Tt-xr-RXP"/>
+                                            <constraint firstItem="Uz0-Ux-1jw" firstAttribute="top" secondItem="zEF-en-8U6" secondAttribute="top" id="44k-dD-yGy"/>
+                                            <constraint firstItem="CNh-d0-222" firstAttribute="leading" secondItem="YBW-Dw-Bv4" secondAttribute="trailing" constant="5" id="6Cd-JX-ltQ"/>
+                                            <constraint firstItem="zEF-en-8U6" firstAttribute="leading" secondItem="VWH-JJ-Dfk" secondAttribute="leading" constant="20" id="7E2-AF-CaC"/>
+                                            <constraint firstItem="blE-mA-lCm" firstAttribute="top" secondItem="Uz0-Ux-1jw" secondAttribute="bottom" constant="40" id="7pI-l0-05T"/>
+                                            <constraint firstItem="zvq-kX-8U4" firstAttribute="centerX" secondItem="VWH-JJ-Dfk" secondAttribute="centerX" id="A46-Hk-J5A"/>
+                                            <constraint firstItem="MHP-fL-Tcf" firstAttribute="top" secondItem="YBW-Dw-Bv4" secondAttribute="bottom" constant="35" id="DMr-v1-ZDK"/>
+                                            <constraint firstItem="blE-mA-lCm" firstAttribute="centerY" secondItem="iB7-fR-sXK" secondAttribute="centerY" id="DQo-EB-jpl"/>
+                                            <constraint firstItem="wej-0o-uRW" firstAttribute="top" secondItem="hpo-nG-45t" secondAttribute="bottom" constant="30" id="GqG-iJ-WhN"/>
+                                            <constraint firstAttribute="trailing" secondItem="blE-mA-lCm" secondAttribute="trailing" constant="10" id="Kis-Gr-tto"/>
+                                            <constraint firstAttribute="trailing" secondItem="gGV-Pa-6tb" secondAttribute="trailing" constant="10" id="LKj-6c-CDj"/>
+                                            <constraint firstItem="iB7-fR-sXK" firstAttribute="leading" secondItem="VWH-JJ-Dfk" secondAttribute="leading" constant="20" id="Ltc-23-LY7"/>
+                                            <constraint firstItem="OEZ-5C-GNd" firstAttribute="centerY" secondItem="MHP-fL-Tcf" secondAttribute="centerY" id="NtV-kY-5Mk"/>
+                                            <constraint firstAttribute="height" constant="769" id="PL7-45-pfJ"/>
+                                            <constraint firstItem="zEF-en-8U6" firstAttribute="top" secondItem="MHP-fL-Tcf" secondAttribute="bottom" constant="35" id="Q9b-MH-HBk"/>
+                                            <constraint firstItem="E2w-ax-W2f" firstAttribute="top" secondItem="VWH-JJ-Dfk" secondAttribute="top" constant="20" id="Rjh-sG-ivx"/>
+                                            <constraint firstItem="OEZ-5C-GNd" firstAttribute="leading" secondItem="MHP-fL-Tcf" secondAttribute="trailing" constant="5" id="ZYR-VN-IIe"/>
+                                            <constraint firstItem="YBW-Dw-Bv4" firstAttribute="top" secondItem="E2w-ax-W2f" secondAttribute="bottom" constant="35" id="aAH-hW-bUc"/>
+                                            <constraint firstAttribute="trailing" secondItem="Uz0-Ux-1jw" secondAttribute="trailing" constant="10" id="bah-3c-edR"/>
+                                            <constraint firstItem="zvq-kX-8U4" firstAttribute="top" secondItem="tGh-yo-D4e" secondAttribute="bottom" constant="40" id="cHw-5g-YqQ"/>
+                                            <constraint firstItem="hpo-nG-45t" firstAttribute="top" secondItem="blE-mA-lCm" secondAttribute="bottom" constant="10" id="dYV-b5-EWZ"/>
+                                            <constraint firstItem="gGV-Pa-6tb" firstAttribute="leading" secondItem="E2w-ax-W2f" secondAttribute="trailing" constant="5" id="eIP-HM-ZU5"/>
+                                            <constraint firstItem="tGh-yo-D4e" firstAttribute="top" secondItem="wej-0o-uRW" secondAttribute="bottom" constant="10" id="ecg-Wj-yAW"/>
+                                            <constraint firstItem="CNh-d0-222" firstAttribute="centerY" secondItem="YBW-Dw-Bv4" secondAttribute="centerY" id="fBQ-pT-11o"/>
+                                            <constraint firstItem="Uz0-Ux-1jw" firstAttribute="leading" secondItem="zEF-en-8U6" secondAttribute="trailing" constant="5" id="flc-BH-UP2"/>
+                                            <constraint firstItem="tGh-yo-D4e" firstAttribute="centerX" secondItem="VWH-JJ-Dfk" secondAttribute="centerX" id="kyK-bc-vwv"/>
+                                            <constraint firstItem="gKM-pw-uz5" firstAttribute="leading" secondItem="zvq-kX-8U4" secondAttribute="trailing" constant="20" id="myD-4m-Iet"/>
+                                            <constraint firstItem="wej-0o-uRW" firstAttribute="centerX" secondItem="VWH-JJ-Dfk" secondAttribute="centerX" id="nTN-2D-GP3"/>
+                                            <constraint firstAttribute="trailing" secondItem="CNh-d0-222" secondAttribute="trailing" constant="10" id="qVf-yz-h0B"/>
+                                            <constraint firstItem="YBW-Dw-Bv4" firstAttribute="leading" secondItem="VWH-JJ-Dfk" secondAttribute="leading" constant="20" id="sPB-51-fVm"/>
+                                            <constraint firstItem="blE-mA-lCm" firstAttribute="leading" secondItem="iB7-fR-sXK" secondAttribute="trailing" constant="5" id="wg9-Oe-4oO"/>
+                                            <constraint firstItem="MHP-fL-Tcf" firstAttribute="leading" secondItem="VWH-JJ-Dfk" secondAttribute="leading" constant="20" id="yBu-Vv-Ste"/>
+                                            <constraint firstItem="gGV-Pa-6tb" firstAttribute="centerY" secondItem="E2w-ax-W2f" secondAttribute="centerY" id="yGe-an-soh"/>
+                                            <constraint firstItem="ox8-hG-85Z" firstAttribute="leading" secondItem="VWH-JJ-Dfk" secondAttribute="leading" constant="20" id="ytg-qk-LIn"/>
+                                            <constraint firstAttribute="width" constant="414" id="zDY-KA-zTr"/>
+                                            <constraint firstItem="zvq-kX-8U4" firstAttribute="centerY" secondItem="ox8-hG-85Z" secondAttribute="centerY" id="zvY-Zd-bvA"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="VWH-JJ-Dfk" secondAttribute="trailing" id="6ZG-ob-wc1"/>
+                                    <constraint firstItem="VWH-JJ-Dfk" firstAttribute="width" secondItem="tWE-xK-qL8" secondAttribute="width" id="bcK-NP-ReK"/>
+                                    <constraint firstItem="VWH-JJ-Dfk" firstAttribute="leading" secondItem="tWE-xK-qL8" secondAttribute="leading" id="dej-OV-mM6"/>
+                                    <constraint firstItem="VWH-JJ-Dfk" firstAttribute="top" secondItem="tWE-xK-qL8" secondAttribute="top" id="koo-dr-zPt"/>
+                                    <constraint firstAttribute="bottom" secondItem="VWH-JJ-Dfk" secondAttribute="bottom" id="tC5-HC-1bB"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="9ds-NC-LWh"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="deG-cb-ZD2"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="woe-7b-u2O"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tWE-xK-qL8" firstAttribute="bottom" secondItem="woe-7b-u2O" secondAttribute="bottom" constant="10" id="6QU-gW-jjq"/>
+                            <constraint firstItem="tWE-xK-qL8" firstAttribute="top" secondItem="woe-7b-u2O" secondAttribute="top" constant="10" id="6d8-h2-6e6"/>
+                            <constraint firstItem="tWE-xK-qL8" firstAttribute="trailing" secondItem="woe-7b-u2O" secondAttribute="trailing" id="Vz4-ud-1vk"/>
+                            <constraint firstItem="tWE-xK-qL8" firstAttribute="leading" secondItem="woe-7b-u2O" secondAttribute="leading" id="jzc-Zf-NFo"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Register" image="gearshape" catalog="system" id="lh5-L7-eRP"/>
+                    <connections>
+                        <outlet property="ActivityIndicatorView" destination="gKM-pw-uz5" id="Fqw-iS-lK9"/>
+                        <outlet property="AuthorTextField" destination="CNh-d0-222" id="z2n-fY-Gzj"/>
+                        <outlet property="CaptureView" destination="wej-0o-uRW" id="wjX-w8-t6F"/>
+                        <outlet property="CommentTextView" destination="Uz0-Ux-1jw" id="Ygv-6n-t9o"/>
+                        <outlet property="IsbnTextField" destination="blE-mA-lCm" id="BZj-2c-gM6"/>
+                        <outlet property="PublisherTextField" destination="OEZ-5C-GNd" id="fWK-VB-7kI"/>
+                        <outlet property="RegisterButton" destination="zvq-kX-8U4" id="19x-FK-cep"/>
+                        <outlet property="TitleTextField" destination="gGV-Pa-6tb" id="X4J-gb-w4g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eip-fb-Urc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="800.00000000000011" y="77.678571428571431"/>
         </scene>
     </scenes>
     <resources>

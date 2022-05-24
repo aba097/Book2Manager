@@ -10,19 +10,18 @@ import Foundation
 class IsbnManager {
     
     //OpenDBAPIを使用して図書データ取得
-    func getBookData(isbn: String) -> (title: String, author: String, publisher: String, comment: String, url: String, isEnable: Bool) {
+    func getBookData(isbn: String) -> (title: String, author: String, publisher: String, comment: String, isEnable: Bool) {
         var title = ""
         var author = ""
         var publisher = ""
         var comment = ""
-        var url = ""
         var isEnable = false
         
         let baseUrlString = "https://api.openbd.jp/v1/"
         let searchUrlString = "\(baseUrlString)get"
         let searchUrl = URL(string: searchUrlString)!
         guard var components = URLComponents(url: searchUrl, resolvingAgainstBaseURL: searchUrl.baseURL != nil) else {
-            return(title, author, publisher, comment, url, isEnable)
+            return(title, author, publisher, comment, isEnable)
             
         }
         
@@ -54,7 +53,6 @@ class IsbnManager {
                 author = bookdata[0].summary.author
                 publisher = bookdata[0].summary.publisher
                 comment = bookdata[0].onix.CollateralDetail.TextContent[0].Text
-                url = bookdata[0].summary.cover
                 isEnable = true
                 
             } catch let error {
@@ -65,7 +63,7 @@ class IsbnManager {
         }.resume()
         
         semaphore.wait()
-        return(title, author, publisher, comment, url, isEnable)
+        return(title, author, publisher, comment, isEnable)
         
     }
     
